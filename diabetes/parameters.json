@@ -1,0 +1,6 @@
+{
+    "training":{"alpha":0.4},
+    "evaluation":{},
+    "registration":{"tags":["mse"]},
+    "scoring":{}
+}
