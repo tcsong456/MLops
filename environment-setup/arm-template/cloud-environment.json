@@ -59,7 +59,7 @@
     }
   },
   "variables": {
-    "amlWorkspaceNme": "[parameters('workspace')]",
+    "amlWorkspaceName": "[parameters('workspace')]",
     "storageAccountName": "[parameters('storageAccount')]",
     "storageAccountType": "Standard_LRS",
     "keyVaultName": "[parameters('keyVault')]",

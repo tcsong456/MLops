@@ -1,0 +1,33 @@
+trigger:
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - environment-setup/arm-template/*
+
+pr:
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - envrionment-setup/arm-template/*
+
+pool:
+  vmImage: "ubuntu-latest"
+
+variables:
+  - group: mlops-diabetes-aml-vg
+  - name: WORKSPACE_SKU
+    value: basic
+
+steps:
+  - task AzureResourceGroupDeployment@2
+    inputs:
+      azureSubscription: "$(AZURE_RM_SVC_CONNECTION)"
+      resourceGroupName: "$(RESOURCE_GROUP)"
+      location: $(LOCATION)
+      csmFile: "$(Build.SourceDirectory/environment-setup/arm-template/cloud-environment.json)"
+      overrideParameters: "-basename $(BASENAME) -location $(LOCATION) -workspace $(WORKSPACE_NAME) -sku $(WORKSPACE_SKU)"
+    displayNmae: "Deploying MLops resources to Azure"  
