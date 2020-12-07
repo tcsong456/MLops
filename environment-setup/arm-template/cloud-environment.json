@@ -14,7 +14,7 @@
       "type": "string",
       "defaultValue":"westeurope",
       "allowedValues": [
-         "eastus",
+        "eastus",
         "eastus2",
         "southcentralus",
         "southeastasia",
