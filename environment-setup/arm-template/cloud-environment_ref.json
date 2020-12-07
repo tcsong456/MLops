@@ -12,7 +12,7 @@
     },
     "location": {
       "type": "string",
-      "defaultValue": "eastus",
+      "defaultValue": "westeurope",
       "allowedValues": [
         "eastus",
         "eastus2",
@@ -32,19 +32,19 @@
     },
     "storageAccount": {
       "type": "string",
-      "defaultValue": "[concat(toLower(parameters('baseName')), 'amlsa')]"
+      "defaultValue": "[concat(toLower(parameters('basename')), 'amlsa')]"
     },
     "keyvault": {
       "type": "string",
-      "defaultValue": "[concat(parameters('baseName'),'-AML-KV')]"
+      "defaultValue": "[concat(parameters('basename'),'-AML-KV')]"
     },
     "appInsights": {
       "type": "string",
-      "defaultValue": "[concat(parameters('baseName'),'-AML-AI')]"
+      "defaultValue": "[concat(parameters('basename'),'-AML-AI')]"
     },
     "acr": {
       "type": "string",
-      "defaultValue": "[concat(toLower(parameters('baseName')),'amlcr')]"
+      "defaultValue": "[concat(toLower(parameters('basename')),'amlcr')]"
     },
     "sku": {
       "type": "string",
