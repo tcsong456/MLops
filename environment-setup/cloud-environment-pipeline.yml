@@ -23,7 +23,7 @@ variables:
     value: basic
 
 steps:
-  - task AzureResourceGroupDeployment@2
+  - task: AzureResourceGroupDeployment@2
     inputs:
       azureSubscription: "$(AZURE_RM_SVC_CONNECTION)"
       resourceGroupName: "$(RESOURCE_GROUP)"
