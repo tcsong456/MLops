@@ -34,7 +34,7 @@
       "type": "string",
       "defaultValue": "[concat(toLower(parameters('baseName')), 'amlsa')]"
     },
-    "keyVault": {
+    "keyvault": {
       "type": "string",
       "defaultValue": "[concat(parameters('baseName'),'-AML-KV')]"
     },
