@@ -1,18 +1,18 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-  "contentVersion":"1.0.0.0",
+  "contentVersion": "1.0.0.0",
   "parameters": {
-    "basename": {
+    "baseName": {
       "type": "string",
-      "minLength": 3,
       "maxLength": 10,
+      "minLength": 3,
       "metadata": {
-        "description": "the base name to use as prefix for all resources"
+        "description": "The base name to use as prefix to create all the resources."
       }
     },
     "location": {
       "type": "string",
-      "defaultValue":"westeurope",
+      "defaultValue": "eastus",
       "allowedValues": [
         "eastus",
         "eastus2",
@@ -24,27 +24,27 @@
         "centralus"
       ],
       "metadata": {
-        "description": "specifies the location for all resources"
+        "description": "Specifies the location for all resources."
       }
     },
     "workspace": {
       "type": "string"
-     },
+    },
     "storageAccount": {
       "type": "string",
-      "defaultValue": "[concat(toLower(parameters('basename')),'amlsa')]"
+      "defaultValue": "[concat(toLower(parameters('baseName')), 'amlsa')]"
     },
-    "keyVault": {
+    "keyvault": {
       "type": "string",
-      "defaultValue": "[concat(parameters('basename')),'-AML-KV')]"
+      "defaultValue": "[concat(parameters('baseName'),'-AML-KV')]"
     },
     "appInsights": {
       "type": "string",
-      "defaultValue": "[concat(parameters('basename'),'-AML-AI')]"
+      "defaultValue": "[concat(parameters('baseName'),'-AML-AI')]"
     },
     "acr": {
       "type": "string",
-      "defaultValue": "[concat(toLower(parameters('basename')),'amlcr')]"
+      "defaultValue": "[concat(toLower(parameters('baseName')),'amlcr')]"
     },
     "sku": {
       "type": "string",
@@ -54,15 +54,15 @@
         "enterprise"
       ],
       "metadata": {
-        "description": "refer to the 'edition' of azure machine learning workspace"
-      } ,
+        "description": "Specifies the sku, also referred as 'edition' of the Azure Machine Learning workspace."
+      }
     }
   },
   "variables": {
     "amlWorkspaceName": "[parameters('workspace')]",
     "storageAccountName": "[parameters('storageAccount')]",
     "storageAccountType": "Standard_LRS",
-    "keyVaultName": "[parameters('keyVault')]",
+    "keyVaultName": "[parameters('keyvault')]",
     "tenantId": "[subscription().tenantId]",
     "applicationInsightsName": "[parameters('appInsights')]",
     "containerRegistryName": "[parameters('acr')]"

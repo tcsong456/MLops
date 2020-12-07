@@ -29,5 +29,5 @@ steps:
       resourceGroupName: "$(RESOURCE_GROUP)"
       location: $(LOCATION)
       csmFile: "$(Build.SourcesDirectory)/environment-setup/arm-template/cloud-environment.json"
-      overrideParameters: "-basename $(BASENAME) -location $(LOCATION) -workspace $(WORKSPACE_NAME) -sku $(WORKSPACE_SKU)"
+      overrideParameters: "-baseName $(BASENAME) -location $(LOCATION) -workspace $(WORKSPACE_NAME) -sku $(WORKSPACE_SKU)"
     displayName: "Deploying MLops resources to Azure"  
