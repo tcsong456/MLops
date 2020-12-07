@@ -30,4 +30,4 @@ steps:
       location: $(LOCATION)
       csmFile: "$(Build.SourceDirectory/environment-setup/arm-template/cloud-environment.json)"
       overrideParameters: "-basename $(BASENAME) -location $(LOCATION) -workspace $(WORKSPACE_NAME) -sku $(WORKSPACE_SKU)"
-    displayNmae: "Deploying MLops resources to Azure"  
+    displayName: "Deploying MLops resources to Azure"  
