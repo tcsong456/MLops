@@ -12,7 +12,7 @@ pr:
       - master
   paths:
     include:
-      - envrionment-setup/arm-template/*
+      - environment-setup/arm-template/*
 
 pool:
   vmImage: "ubuntu-latest"
@@ -23,11 +23,11 @@ variables:
     value: basic
 
 steps:
-  - task AzureResourceGroupDeployment@2
+  - task: AzureResourceGroupDeployment@2
     inputs:
       azureSubscription: "$(AZURE_RM_SVC_CONNECTION)"
       resourceGroupName: "$(RESOURCE_GROUP)"
       location: $(LOCATION)
-      csmFile: "$(Build.SourceDirectory/environment-setup/arm-template/cloud-environment.json)"
+      csmFile: "$(Build.SourcesDirectory)/environment-setup/arm-template/cloud-environment.json"
       overrideParameters: "-basename $(BASENAME) -location $(LOCATION) -workspace $(WORKSPACE_NAME) -sku $(WORKSPACE_SKU)"
-    displayNmae: "Deploying MLops resources to Azure"  
+    displayName: "Deploying MLops resources to Azure"  
