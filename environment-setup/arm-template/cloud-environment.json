@@ -51,11 +51,11 @@
       "defaultValue": "basic",
       "allowedValues": [
         "basic",
-        "enterprice"
+        "enterprise"
       ],
       "metadata": {
         "description": "refer to the 'edition' of azure machine learning workspace"
-      },
+      } ,
     }
   },
   "variables": {
@@ -64,15 +64,15 @@
     "storageAccountType": "Standard_LRS",
     "keyVaultName": "[parameters('keyVault')]",
     "tenantId": "[subscription().tenantId]",
-    "applicationInsightName": "[parameters('appInsights')]",
+    "applicationInsightsName": "[parameters('appInsights')]",
     "containerRegistryName": "[parameters('acr')]"
   },
   "resources": [
     {
-      "type": "Microsoft.Storage/storageAccount",
+      "type": "Microsoft.Storage/storageAccounts",
       "apiVersion": "2018-07-01",
       "name": "[variables('storageAccountName')]",
-      "location": "[paramters('location')]",
+      "location": "[parameters('location')]",
       "sku": {
         "name": "[variables('storageAccountType')]"
       },
