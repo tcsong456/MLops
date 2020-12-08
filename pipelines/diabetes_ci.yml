@@ -1,0 +1,18 @@
+resources:
+  containers:
+    - container: mlops
+      image: mcr.microsoft.com/mlops/python:latest
+
+pr: none
+trgger:
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - diabetes/
+      - ml_service/pipeline/diabetes_build_train_pipeline.py
+
+variabels:
+  - template: diabetes_variabels_template.yml
+  - group: mlops-diabetes-aml-vg
