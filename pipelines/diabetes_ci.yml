@@ -32,7 +32,7 @@ stages:
         - task: AzureCLI@2
           displayName: 'Publish diabetes pipeline'
           inputs:
-            azureSubscription: '$(WORKSPACE_SVC_CONNECTION)
+            azureSubscription: '$(WORKSPACE_SVC_CONNECTION)'
             scriptLocation: inlineScript
             workingDirectory: $(Build.SourcesDirectory)
             inlineScript: |
