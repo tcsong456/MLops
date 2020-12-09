@@ -29,7 +29,7 @@ stages:
       container: mlops
       timeoutInMinutes: 0
       steps:
-        - task: AzureCLI@2
+        - task: AzureCLI@1
           displayName: 'Publish diabetes pipeline'
           inputs:
             azureSubscription: '$(WORKSPACE_SVC_CONNECTION)'
