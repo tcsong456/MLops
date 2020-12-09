@@ -22,10 +22,10 @@ pool:
 
 stages:
   - stage: 'Model_CI'
-    displayName: 'Model_CI'
+    displayName: 'Model CI'
     jobs:
-    - job: 'Model_CI Pipeline'
-      displayName: 'Model_CI Pipeline'
+    - job: 'Model_CI_Pipeline'
+      displayName: 'Model CI Pipeline'
       container: mlops
       timeoutInMinutes: 0
       steps:
