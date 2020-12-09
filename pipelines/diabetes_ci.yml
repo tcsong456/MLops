@@ -4,7 +4,7 @@ resources:
       image: mcr.microsoft.com/mlops/python:latest
 
 pr: none
-trgger:
+trigger:
   branches:
     include:
       - master
@@ -13,16 +13,16 @@ trgger:
       - diabetes/
       - ml_service/pipeline/diabetes_build_train_pipeline.py
 
-variabels:
+variables:
   - template: diabetes_variabels_template.yml
   - group: mlops-diabetes-aml-vg
 
 pool:
-  - vmImage: ubuntu-latest
+  vmImage: ubuntu-latest
 
 stages:
   - stage: 'Model_CI'
-  displayName: 'Model_CI'
+    displayName: 'Model_CI'
     - jobs: 'Model_CI Pipeline'
       displayName: 'Model_CI Pipeline'
       container: mlops
