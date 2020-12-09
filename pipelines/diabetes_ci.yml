@@ -30,6 +30,7 @@ stages:
       timeoutInMinutes: 0
       steps:
         - task: AzureCLI@2
+          displayName: 'Publish diabetes pipeline'
           inputs:
             azureSubscription: '%(WORKSPACE_SVC_CONNECTION)
             scriptLocation: inlineScript
@@ -38,4 +39,4 @@ stages:
               set -e
               export SUBSCRIPTION_ID = $(az account show --query id -o tsv)
               python -m ml_service.pipeline.diabetes_build_train
-          displayName: 'Publish diabetes pipeline'
+          
