@@ -81,7 +81,7 @@ def main():
         run.parent.log(key,value)
     
     if dataset_name:
-        if dataset_file_path:
+        if dataset_file_path == 'none':
             dataset = Dataset.get_by_name(workspace=run.experiment.workspace,
                                           name=dataset_name,
                                           version=dataset_version)
