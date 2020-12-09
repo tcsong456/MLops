@@ -1,7 +1,8 @@
-from utils.env_variables import Env
 from azureml.core import Workspace,Datastore,Dataset
 from azureml.core.runconfig import RunConfiguration
+from azureml.pipeline.steps import PythonScriptStep
 from azureml.pipeline.core.graph import PipelineParameter
+from azureml.pipeline.core import Pipeline,PipelineData
 from ml_service.utils.create_compute import get_compute
 from ml_service.utils.create_environment import get_environment
 from ml_service.utils.environment_variables import ENV
@@ -40,7 +41,8 @@ def main():
     dataset_version_param = PipelineParameter(name='dataset_version',default_value=e.dataset_version)
     dataset_file_path = PipelineParameter(name='dataset_file_path',default_value='none')
     
-    if e.dataset_name not in aml_workspace.datasets:
+    dataset_name = e.dataset_name
+    if dataset_name not in aml_workspace.datasets:
         create_sample_data_csv()
         file_name = 'diabetes.csv'
         if not os.path.exists(file_name):
@@ -53,9 +55,36 @@ def main():
                                show_progress=True)
         path_on_datastore = os.path.join(target_path,file_name)
         dataset = Dataset.Tabular.from_delimited_files(path=(datastore,path_on_datastore))
-        
+        dataset.register(workspace=aml_workspace,
+                         name=dataset_name,
+                         description='registered dataset',
+                         create_new_version=True,
+                         tags={'format':'CSV'})
+    
+    pipeline_data = PipelineData('train',datastore=aml_workspace.get_default_datastore())
+    train_step = PythonScriptStep(script_name=e.train_script_path,
+                                  name='train_step',
+                                  arguments=['--model-name',model_name_param,
+                                             '--dataset-name',dataset_name,
+                                             '--dataset-version',dataset_version_param,
+                                             '--dataset-file-path',dataset_file_path,
+                                             '--step-output',pipeline_data],
+                                  compute_target=aml_compute,
+                                  runconfig=run_config,
+                                  source_directory=e.source_train_directory,
+                                  outputs=[pipeline_data])
+    
+    steps = [train_step]
+    train_pipeline = Pipeline(workspace=aml_workspace,
+                              steps=steps)
+    train_pipeline.validate()
+    train_pipeline.publish(name=e.pipeline_name,
+                           description='model training pipeline',
+                           version=e.build_id)
+
+if __name__ == '__main__':
+    main()
+    
         #%%
-from azureml.core.runconfig import RunConfiguration
-run_config = RunConfiguration()
-run_config
+
     

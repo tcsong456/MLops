@@ -25,4 +25,7 @@ variables:
     value: latest
   - name: DATASET_NAME
     value: dataset_ds
-    
+  - name: TRAIN_SCRIPT_PATH
+    value: training/train.py
+  - name: TRAINING_PIPELINE_NAME
+    value: 'databetes_regression_pipeline'    

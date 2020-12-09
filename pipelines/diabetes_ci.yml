@@ -16,3 +16,25 @@ trgger:
 variabels:
   - template: diabetes_variabels_template.yml
   - group: mlops-diabetes-aml-vg
+
+pool:
+  - vmImage: ubuntu-latest
+
+stages:
+  - stage: 'Model_CI'
+  displayName: 'Model_CI'
+    - jobs: 'Model_CI Pipeline'
+      displayName: 'Model_CI Pipeline'
+      container: mlops
+      timeoutInMinutes: 0
+      steps:
+        - task: AzureCLI@2
+          inputs:
+            azureSubscription: '%(WORKSPACE_SVC_CONNECTION)
+            scriptLocation: inlineScript
+            workingDirectory: $(Build.SourcesDirectory)
+            inlineScript: |
+              set -e
+              export SUBSCRIPTION_ID = $(az account show --qurery id -o tsv)
+              python -m ml_service.pipeline.diabetes_build_train
+        displayName: 'Publish diabetes pipeline'

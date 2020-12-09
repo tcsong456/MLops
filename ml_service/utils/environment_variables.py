@@ -18,3 +18,6 @@ class ENV:
     aml_env_name: Optional[str] = os.environ.get('AML_ENV_NAME')
     rebuild_env: Optional[bool] = os.environ.get('AML_REBUILD_ENVIRONMENT')
     model_name: Optional[str] = os.environ.get('MODEL_NAME')
+    dataset_name: Optional[str] = os.environ.get('DATASET_NAME')
+    build_id: Optional[str] = os.environ.get('BUILD_BUILDID')
+    pipeline_name: Optional[str] = os.environ.get('TRAINING_PIPELINE_NAME')

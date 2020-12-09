@@ -18,7 +18,6 @@ def get_environment(workspace,
                 restore_env = environments[env_name]
         
         if restore_env is None or create_new:
-            print(e.source_train_directory)
             new_env = Environment.from_conda_specification(env_name,
                                                            os.path.join(e.source_train_directory,conda_dependencies))
             restore_env = new_env
