@@ -24,7 +24,7 @@ stages:
   - stage: 'Model_CI'
     displayName: 'Model_CI'
     jobs:
-    - jobs: 'Model_CI Pipeline'
+    - job: 'Model_CI Pipeline'
       displayName: 'Model_CI Pipeline'
       container: mlops
       timeoutInMinutes: 0
@@ -38,4 +38,4 @@ stages:
               set -e
               export SUBSCRIPTION_ID = $(az account show --query id -o tsv)
               python -m ml_service.pipeline.diabetes_build_train
-        displayName: 'Publish diabetes pipeline'
+          displayName: 'Publish diabetes pipeline'
