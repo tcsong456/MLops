@@ -23,6 +23,7 @@ pool:
 stages:
   - stage: 'Model_CI'
     displayName: 'Model_CI'
+    jobs:
     - jobs: 'Model_CI Pipeline'
       displayName: 'Model_CI Pipeline'
       container: mlops
@@ -35,6 +36,6 @@ stages:
             workingDirectory: $(Build.SourcesDirectory)
             inlineScript: |
               set -e
-              export SUBSCRIPTION_ID = $(az account show --qurery id -o tsv)
+              export SUBSCRIPTION_ID = $(az account show --query id -o tsv)
               python -m ml_service.pipeline.diabetes_build_train
         displayName: 'Publish diabetes pipeline'
