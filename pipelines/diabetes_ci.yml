@@ -14,7 +14,7 @@ trigger:
       - ml_service/pipeline/diabetes_build_train_pipeline.py
 
 variables:
-  - template: diabetes_variabels_template.yml
+  - template: diabetes_variables_template.yml
   - group: mlops-diabetes-aml-vg
 
 pool:
