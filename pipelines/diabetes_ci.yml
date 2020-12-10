@@ -37,5 +37,5 @@ stages:
             workingDirectory: $(Build.SourcesDirectory)
             inlineScript: |
               set -e
-              python -m ml_service.pipeline.diabetes_build_train
+              python -m ml_service.pipeline.diabetes_build_train_pipeline
           
