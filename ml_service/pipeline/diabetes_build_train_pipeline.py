@@ -77,7 +77,7 @@ def main():
     print('Train step created!')
     
     eval_step = PythonScriptStep(name='eval_step',
-                                 script=e.eval_script_path,
+                                 script_name=e.eval_script_path,
                                  compute_target=aml_compute,
                                  source_directory=e.source_train_directory,
                                  arguments=['--model-name',model_name_param,
