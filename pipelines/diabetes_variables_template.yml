@@ -29,6 +29,8 @@ variables:
     value: training/train.py
   - name: EVAL_SCRIPT_PATH
     value: evaluation/evaluate.py
+  - name: REGISTER_SCRIPT_PATH
+    value: registration/register.py
   - name: TRAINING_PIPELINE_NAME
     value: 'diabetes_regression_pipeline'
   - name: SUBSCRIPTION_ID

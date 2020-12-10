@@ -83,20 +83,36 @@ def main():
                                  arguments=['--model-name',model_name_param,
                                             '--allow-run-cancel',e.allow_run_cancel],
                                  runconfig=run_config,
-                                 allow_reuse=True)
+                                 allow_reuse=False)
     print('EVAL step created!')
+    
+    register_step = PythonScriptStep(name='register_step',
+                                     script_name=e.register_script_path,
+                                     compute_target=aml_compute,
+                                     source_directory=e.source_train_directory,
+                                     arguments=['--model-name',model_name_param,
+                                                '--step-input',pipeline_data],
+                                     runconfig=run_config,
+                                     allow_reuse=False)
+    print('Register step created!')
     
     if e.run_evaluation:
         print('evaluation step is included')
         eval_step.run_after(train_step)
-        steps = [train_step,eval_step]
+        register_step.run_after(eval_step)
+        steps = [train_step,eval_step,register_step]
+    else:
+        print('evaluation step is excluded')
+        register_step.run_after(train_step)
+        steps = [train_step,register_step]
         
     train_pipeline = Pipeline(workspace=aml_workspace,
                               steps=steps)
     train_pipeline.validate()
-    train_pipeline.publish(name=e.pipeline_name,
-                           description='model training pipeline',
-                           version=e.build_id)
+    published_pipeline = train_pipeline.publish(name=e.pipeline_name,
+                                                description='model training pipeline',
+                                                version=e.build_id)
+    print(f'{published_pipeline.name} is published1')
 
 if __name__ == '__main__':
     main()
