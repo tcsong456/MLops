@@ -90,6 +90,7 @@ def main():
                                      script_name=e.register_script_path,
                                      compute_target=aml_compute,
                                      source_directory=e.source_train_directory,
+                                     inputs=[pipeline_data],
                                      arguments=['--model-name',model_name_param,
                                                 '--step-input',pipeline_data],
                                      runconfig=run_config,
