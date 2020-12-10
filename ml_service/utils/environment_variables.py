@@ -26,3 +26,5 @@ class ENV:
     datastore_name: Optional[str] = os.environ.get('DATASTORE_NAME')
     dataset_version: Optional[str] = os.environ.get('DATASET_VERSION')
     train_script_path: Optional[str] = os.environ.get('TRAIN_SCRIPT_PATH')
+    eval_script_path: Optional[str] = os.environ.get('EVAL_SCRIPT_PATH')
+    allow_run_cancel: Optional[str] = os.environ.get('ALLOW_RUN_CANCEL')

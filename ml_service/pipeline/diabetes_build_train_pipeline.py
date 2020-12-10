@@ -72,9 +72,25 @@ def main():
                                   compute_target=aml_compute,
                                   runconfig=run_config,
                                   source_directory=e.source_train_directory,
-                                  outputs=[pipeline_data])
+                                  outputs=[pipeline_data],
+                                  allow_reuse=True)
+    print('Train step created!')
     
-    steps = [train_step]
+    eval_step = PythonScriptStep(name='eval_step',
+                                 script=e.eval_script_path,
+                                 compute_target=aml_compute,
+                                 source_directory=e.source_train_directory,
+                                 arguments=['--model-name',model_name_param,
+                                            '--allow-run-cancel',e.allow_run_cancel],
+                                 runconfig=run_config,
+                                 allow_reuse=True)
+    print('EVAL step created!')
+    
+    if e.run_evaluation:
+        print('evaluation step is included')
+        eval_step.run_after(train_step)
+        steps = [train_step,eval_step]
+        
     train_pipeline = Pipeline(workspace=aml_workspace,
                               steps=steps)
     train_pipeline.validate()
