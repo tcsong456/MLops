@@ -25,7 +25,7 @@ def main():
         print(f'compute target: {aml_compute} is created')
     
     environment = get_environment(workspace=aml_workspace,
-                                  env_name=e.env_name,
+                                  env_name=e.aml_env_name,
                                   conda_dependencies=e.aml_conda_train_dependent_files,
                                   create_new=e.rebuild_env)
     run_config = RunConfiguration()
