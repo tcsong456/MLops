@@ -37,6 +37,5 @@ stages:
             workingDirectory: $(Build.SourcesDirectory)
             inlineScript: |
               set -e
-#              export SUBSCRIPTION_ID=$(az account show --query id -o tsv)
               python -m ml_service.pipeline.diabetes_build_train
           
