@@ -39,3 +39,5 @@ variables:
     value: STANDARD_DS2_V2
   - name: ALLOW_RUN_CANCEL
     value: 'true'
+  - name: RUN_EVALUATION
+    value: 'true'
