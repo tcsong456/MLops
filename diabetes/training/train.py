@@ -104,11 +104,11 @@ def main():
         run.log(key,value)
         run.parent.log(key,value)
     
-    os.mkdir(step_output,exist_ok=True)
+    os.makedirs(step_output,exist_ok=True)
     model_path = os.path.join(step_output,model_name)
     joblib.dump(value=model,filename=model_path)
     
-    os.mkdir('outputs',exist_ok=True)
+    os.makedirs('outputs',exist_ok=True)
     output_path = os.path.join('outputs',model_name)
     joblib.dump(value=model,filename=output_path)
     
