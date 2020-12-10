@@ -21,3 +21,4 @@ class ENV:
     dataset_name: Optional[str] = os.environ.get('DATASET_NAME')
     build_id: Optional[str] = os.environ.get('BUILD_BUILDID')
     pipeline_name: Optional[str] = os.environ.get('TRAINING_PIPELINE_NAME')
+    compute_name: Optional[str] = os.environ.get('AML_COMPUTE_CLUSTER_NAME')
