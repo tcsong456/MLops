@@ -19,7 +19,7 @@ def main():
                                   resource_group=e.resource_group
                                   ) 
     
-    published_pipeline = PublishedPipeline.get(aml_workspace)
+    published_pipeline = PublishedPipeline.list(aml_workspace)
     matched_pipes = []
     for pipe in published_pipeline:
         if pipe.name == e.pipeline_name:
