@@ -1,0 +1,45 @@
+variables:
+  - name: AML_CLUSTER_PRIORITY
+    value: lowpriority
+  - name: AML_CLUSTER_PRIORITY_SCORING
+    value: lowpriority
+  - name: AML_CLUSTER_MIN_NODES
+    value: 0
+  - name: AML_CLUSTER_MIN_NODES_SCORING
+    value: 0
+  - name: AML_CLUSTER_MAX_NODES
+    value: 4
+  - name: AMLS_CLUSTER_MAX_NODES_SCORING
+    value: 4
+  - name: SOURCE_TRAIN_DIRECTORY
+    value: diabetes
+  - name: AML_CONDA_TRAIN_DEPENDENT_FILES
+    value: 'conda_dependencies.yml'
+  - name: AML_ENV_NAME
+    value: diabetes_regression_training_env
+  - name: AML_REBUILD_ENVIRONMENT
+    value: 'false'
+  - name: MODEL_NAME
+    value: diabetes_regression_model.pkl
+  - name: DATASET_VERSION
+    value: latest
+  - name: DATASET_NAME
+    value: dataset_ds
+  - name: TRAIN_SCRIPT_PATH
+    value: training/train.py
+  - name: EVAL_SCRIPT_PATH
+    value: evaluation/evaluate.py
+  - name: REGISTER_SCRIPT_PATH
+    value: registration/register.py
+  - name: TRAINING_PIPELINE_NAME
+    value: 'diabetes_regression_pipeline'
+#  - name: SUBSCRIPTION_ID
+#    value: 64c727c2-4f98-4ef1-a45f-09eb33c1bd59    
+  - name: AML_COMPUTE_CLUSTER_NAME
+    value: train-cluster
+  - name: AML_COMPUTE_CLUSTER_CPU_SKU
+    value: STANDARD_DS2_V2
+  - name: ALLOW_RUN_CANCEL
+    value: 'true'
+  - name: RUN_EVALUATION
+    value: 'true'

@@ -81,7 +81,7 @@ def main():
         run.parent.log(key,value)
     
     if dataset_name:
-        if dataset_file_path:
+        if dataset_file_path == 'none':
             dataset = Dataset.get_by_name(workspace=run.experiment.workspace,
                                           name=dataset_name,
                                           version=dataset_version)
@@ -104,11 +104,11 @@ def main():
         run.log(key,value)
         run.parent.log(key,value)
     
-    os.mkdir(step_output,exist_ok=True)
+    os.makedirs(step_output,exist_ok=True)
     model_path = os.path.join(step_output,model_name)
     joblib.dump(value=model,filename=model_path)
     
-    os.mkdir('outputs',exist_ok=True)
+    os.makedirs('outputs',exist_ok=True)
     output_path = os.path.join('outputs',model_name)
     joblib.dump(value=model,filename=output_path)
     

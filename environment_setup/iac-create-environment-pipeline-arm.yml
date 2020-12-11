@@ -5,20 +5,20 @@ trigger:
       - master
   paths:
     include:
-      - environment_setup/arm-templates/*
+      - environment_setup/arm-template/*
 pr:
   branches:
     include:
       - master
   paths:
     include:
-      - environment_setup/arm-templates/*
+      - environment_setup/arm-template/*
 
 pool:
   vmImage: "ubuntu-latest"
 
 variables:
-  - group: devopsforai-aml-vg
+  - group: mlops-diabetes-aml-vg
   - name: WORKSPACE_SKU # https://docs.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-ml#sku
     value: basic
 
@@ -30,7 +30,8 @@ steps:
       resourceGroupName: "$(RESOURCE_GROUP)"
       location: $(LOCATION)
       templateLocation: "Linked artifact"
-      csmFile: "$(Build.SourcesDirectory)/environment_setup/arm-templates/cloud-environment.json"
+      csmFile: "$(Build.SourcesDirectory)/environment_setup/arm-template/cloud-environment.json"
       overrideParameters: "-baseName $(BASE_NAME) -location $(LOCATION) -workspace $(WORKSPACE_NAME) -sku $(WORKSPACE_SKU)"
       deploymentMode: "Incremental"
     displayName: "Deploy MLOps resources to Azure"
+

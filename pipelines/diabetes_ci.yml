@@ -1,0 +1,44 @@
+resources:
+  containers:
+    - container: mlops
+      image: mcr.microsoft.com/mlops/python:latest
+
+pr: none
+trigger:
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - diabetes/
+      - ml_service/pipeline/diabetes_build_train_pipeline.py
+
+variables:
+  - template: diabetes_variables_template.yml
+  - group: mlops-diabetes-aml-vg
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+  - stage: 'Model_CI'
+    displayName: 'Model CI'
+    jobs:
+    - job: 'Model_CI_Pipeline'
+      displayName: 'Model CI Pipeline'
+      container: mlops
+      timeoutInMinutes: 0
+      steps:
+        - task: AzureCLI@1
+          displayName: 'Publish diabetes pipeline'
+          inputs:
+            azureSubscription: '$(WORKSPACE_SVC_CONNECTION)'
+            scriptLocation: inlineScript
+            workingDirectory: $(Build.SourcesDirectory)
+            inlineScript: |
+              set -e
+              export SUBSCRIPTION_ID=$(az account show --query id -o tsv)
+              python -m ml_service.pipeline.diabetes_build_train_pipeline
+
+
+          
