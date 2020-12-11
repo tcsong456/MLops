@@ -1,5 +1,5 @@
 from azureml.core import Run
-from diabetes.utils.model_utils import get_model
+from utils.model_utils import get_model
 import argparse
 import traceback
 
@@ -9,7 +9,7 @@ arg('--model-name',type=str,default='diabetes_model.pkl',
     help='the name of the model')
 arg('--run-id',type=str,
     help='running id of training')
-arg('--allow-run-cancel',type=str,
+arg('--allow-run-cancel',type=str,default='true',
     help='set to true to cancel unsuccessful evalutation run')
 args = parser.parse_args()
 
@@ -53,3 +53,4 @@ except Exception:
     traceback.print_exc(limit=None,file=None,chain=True)
     raise
     
+#%%
