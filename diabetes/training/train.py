@@ -68,7 +68,7 @@ def main():
     dataset_version = args.dataset_version
     run = Run.get_context()
     
-    with open('diabetes/parameters.json') as f:
+    with open('parameters.json') as f:
         pars = json.load(f)
     try:
         train_args = pars['training']
