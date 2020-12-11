@@ -40,7 +40,7 @@ def main():
             with open(args.output_write_file,'w') as output_file:
                 output_file.write(published_pipeline.id)
             
-        if args.skip_train_file is False:
+        if args.skip_train_exc is False:
             pipeline_param = {'model_name':e.model_name}
             tags = {'build_id':e.build_id}
             if e.build_uri is not None:
