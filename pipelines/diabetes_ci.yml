@@ -42,9 +42,11 @@ stages:
   - stage: 'Trigger_AML_Pipeline'
     displayName: 'Train and Evaluate Model'
     condition: succeeded()
-    variables: |
-      BUILD_BUILDID: '$(BUILD.BUILDID)'
-      BUILD_URI: '$(SYSTEM.COLLECTIONURI)$(SYSTEM.TEAMPROJECT)/_build/results?buildId=$(BUILD.BUILDID)'
+    variables: 
+      - name: BUILD_BUILDID 
+        value: '$(BUILD.BUILDID)'
+      - name: BUILD_URI
+        value: '$(SYSTEM.COLLECTIONURI)$(SYSTEM.TEAMPROJECT)/_build/results?buildId=$(BUILD.BUILDID)'
     jobs:
       - job: 'Get_Pipeline_ID'
         condition: and(succeeded(),eq(coalesce(variables['auto-trigger-pipeline'],'true'),'true'))
@@ -58,7 +60,7 @@ stages:
             inputs:
               azureSubscription: '$(WORKSPACE_SVC_CONNECTION)'
               scriptLocation: inlineScript
-              wrokingDirctory: '$(Build.SourcesDirectory)'
+              wrokingDirectory: '$(Build.SourcesDirectory)'
               inlineScript: |
                 set -e
                 export SUBSCRIPTION_ID=$(az account show --query id -o tsv)
