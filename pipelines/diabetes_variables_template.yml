@@ -43,3 +43,5 @@ variables:
     value: 'true'
   - name: RUN_EVALUATION
     value: 'true'
+  - name: EXPERIMENT_NAME
+    value: diabetes_mlops

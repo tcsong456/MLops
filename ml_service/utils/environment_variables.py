@@ -30,3 +30,5 @@ class ENV:
     register_script_path: Optional[str] = os.environ.get('REGISTER_SCRIPT_PATH')
     allow_run_cancel: Optional[str] = os.environ.get('ALLOW_RUN_CANCEL')
     run_evaluation: Optional[str] = os.environ.get('RUN_EVALUATION')
+    experiment_name: Optional[str] = os.environ.get('EXPERIMENT_NAME')
+    build_uri: Optional[str] = os.environ.get('BUILD_URI')
