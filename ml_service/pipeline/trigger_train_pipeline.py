@@ -4,7 +4,7 @@ from azureml.core import Workspace,Experiment
 from azureml.pipeline.core import PublishedPipeline
 
 def main():
-    parser = argparse('trigger_pipeline')
+    parser = argparse.ArgumentParser('trigger_pipeline')
     arg = parser.add_argument
     arg('--output-write-file',type=str,default='pipeline_id_recorder',
         help='the text file to write piepeline id')
