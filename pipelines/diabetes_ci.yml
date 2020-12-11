@@ -60,7 +60,7 @@ stages:
             inputs:
               azureSubscription: '$(WORKSPACE_SVC_CONNECTION)'
               scriptLocation: inlineScript
-              wrokingDirectory: '$(Build.SourcesDirectory)'
+              workingDirectory: '$(Build.SourcesDirectory)'
               inlineScript: |
                 set -e
                 export SUBSCRIPTION_ID=$(az account show --query id -o tsv)
