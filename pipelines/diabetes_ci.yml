@@ -53,9 +53,9 @@ stages:
         timeoutInMinutes: 0
         steps:
           - task: AzureCLI@1
-            inputs:
             displayName: 'Get Pipeline id'
             name: 'getpieplineid'
+            inputs:
               azureSubscription: '$(WORKSPACE_SVC_CONNECTION)'
               scriptLocation: inlineScript
               wrokingDirctory: '$(Build.SourcesDirectory)'
