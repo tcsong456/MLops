@@ -1,7 +1,7 @@
 from azureml.core import Datastore,Dataset
 from azureml.core.run import Run
 from sklearn.model_selection import train_test_split
-from skelearn.linear_model import Ridge
+from sklearn.linear_model import Ridge
 from sklearn.metrics import mean_squared_error
 import argparse
 import pprint

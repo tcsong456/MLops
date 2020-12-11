@@ -67,25 +67,7 @@ stages:
                 python -m ml_service.pipeline.save_train_pipeline_id --output-write-file 'pipeline_id.txt'
                 AMLPIPELINEID="$(cat pipeline_id.txt)"
                 echo "##vso[task.setvariable variable=AMLPIPELINEID;isOutput=true]$AMLPIPELINEID"
-#      - job: 'Run_Pipeline'
-#        dependsOn: 'Get_Pipeline_ID'
-#        displayName: 'Trigger Pipeline run'
-#        timeoutInMinutes: 0
-#        pool: server
-#        variables:
-#          - name: AMLPIPELINE_ID
-#            value: $[dependencies.Get_Pipeline_ID.outputs['getpipelineid.AMLPIPELINEID']]
-#        steps:
-#          - task: AzureCLI@1
-#            displayName: 'Run pipeline exp'
-#            inputs:
-#              azureSubscription: '$(WORKSPACE_SVC_CONNECTION)'
-#              scriptLocation: inlineScript
-#              workingDirectory: '$(Build.SourcesDirectory)'
-#              inlineScript: |
-#                set -e
-#                export SUBSCRIPTION_ID=$(az account show --query id -o tsv)
-#                python -m ml_service.pipeline.trigger_pipeline
+
         
              
 
