@@ -40,10 +40,10 @@ stages:
               export SUBSCRIPTION_ID=$(az account show --query id -o tsv)
               python -m ml_service.pipeline.diabetes_build_train_pipeline
   - stage: 'Trigger_AML_Pipeline'
-    diplayName: 'Train and Evaluate Model'
+    displayName: 'Train and Evaluate Model'
     condition: succeeded()
-    vriables: |
-      BUILD_BUILDID: '$(BUILD.BuildId)'
+    variables: |
+      BUILD_BUILDID: '$(BUILD.BUILDID)'
       BUILD_URI: '$(SYSTEM.COLLECTIONURI)$(SYSTEM.TEAMPROJECT)/_build/results?buildId=$(BUILD.BUILDID)'
     jobs:
       - job: 'Get_Pipeline_ID'
@@ -56,15 +56,15 @@ stages:
             inputs:
             displayName: 'Get Pipeline id'
             name: 'getpieplineid'
-            azureSubscription: '$(WORKSPACE_SVC_CONNECTION)'
-            scriptLocation: inlineScript
-            wrokingDirctory: '$(Build.SourcesDirectory)'
-            inlineScript: |
-              set -e
-              export SUBSCRIPTION_ID=$(az account show --query id -o tsv)
-              python -m ml_service.pipeline.trigger_train_pipeline --output-write-file 'pipeline_id.txt' --skip-train-exc
-              AMLPIPELINEID="$(cat pipeline_id.txt)"
-              echo "##vso[task.setvariable variable=AMLPIPELINEID;isOutput=true]$AMLPIPELINEID"
+              azureSubscription: '$(WORKSPACE_SVC_CONNECTION)'
+              scriptLocation: inlineScript
+              wrokingDirctory: '$(Build.SourcesDirectory)'
+              inlineScript: |
+                set -e
+                export SUBSCRIPTION_ID=$(az account show --query id -o tsv)
+                python -m ml_service.pipeline.trigger_train_pipeline --output-write-file 'pipeline_id.txt' --skip-train-exc
+                AMLPIPELINEID="$(cat pipeline_id.txt)"
+                echo "##vso[task.setvariable variable=AMLPIPELINEID;isOutput=true]$AMLPIPELINEID"
              
 
 
