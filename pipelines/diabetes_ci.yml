@@ -29,6 +29,7 @@ stages:
       container: mlops
       timeoutInMinutes: 0
       steps:
+        - template: code-quality-template.yml
         - task: AzureCLI@1
           displayName: 'Publish diabetes pipeline'
           inputs:
@@ -38,4 +39,6 @@ stages:
             inlineScript: |
               set -e
               python -m ml_service.pipeline.diabetes_build_train_pipeline
+
+
           
