@@ -33,8 +33,8 @@ variables:
     value: registration/register.py
   - name: TRAINING_PIPELINE_NAME
     value: 'diabetes_regression_pipeline'
-  - name: SUBSCRIPTION_ID
-    value: 64c727c2-4f98-4ef1-a45f-09eb33c1bd59    
+#  - name: SUBSCRIPTION_ID
+#    value: 64c727c2-4f98-4ef1-a45f-09eb33c1bd59    
   - name: AML_COMPUTE_CLUSTER_NAME
     value: train-cluster
   - name: AML_COMPUTE_CLUSTER_CPU_SKU
