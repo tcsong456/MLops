@@ -98,7 +98,7 @@ def main():
     
     df = dataset.to_pandas_dataframe()
     data = split_data(df)
-    model = train_model(df,train_args)
+    model = train_model(data,train_args)
     metrics = get_model_metrics(model,data)
     for key,value in metrics.items():
         run.log(key,value)
