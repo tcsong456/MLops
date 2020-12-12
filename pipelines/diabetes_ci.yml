@@ -74,7 +74,7 @@ stages:
         condition: always()
         timeoutInMinutes: 0
         steps:
-          - template: pipelines.diabetes_variables_template.yml
+          - template: diabetes_publish_model_artifacts_template.yml
 
         
              
