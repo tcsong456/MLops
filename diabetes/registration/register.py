@@ -85,7 +85,7 @@ def main():
     except KeyError:
         print('could not find tag in parent run')
     
-    model_file = os.path.joiin(model_path,model_name)
+    model_file = os.path.join(model_path,model_name)
     model = joblib.load(model_file)
     parent_tags = run.parent.get_tags()
     
