@@ -53,7 +53,7 @@ def main():
     exp = run.experiment
     run_id = 'amlcompute'
     
-    parser = argparse('registeration')
+    parser = argparse.ArgumentParser('registeration')
     arg = parser.add_argument
     arg('--model-name',type=str,default='diabetes_regression_model.pkl',
         help='the name of the model')
