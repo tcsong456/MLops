@@ -67,12 +67,12 @@ stages:
                 python -m ml_service.pipeline.run_train_pipeline --output-write-file 'pipeline_id.txt'
                 AMLPIPELINEID="$(cat pipeline_id.txt)"
                 echo "##vso[task.setvariable variable=AMLPIPELINEID;isOutput=true]$AMLPIPELINEID"
-      - job: 'Training Report'
+      - job: 'Training_Report'
         dependsOn: 'Run_Pipeline'
         displayName: 'check if model is registered'
         container: mlops
         condition: always()
-        timeinOutMinutes: 0
+        timeoutInMinutes: 0
         steps:
           - template: pipelines.diabetes_variables_template.yml
 
