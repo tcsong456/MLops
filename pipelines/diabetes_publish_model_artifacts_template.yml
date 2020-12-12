@@ -11,7 +11,7 @@ steps:
   name: 'createmodelartifact'
   displayName: 'Determin if evalution is successful and model is registered'
   inputs:
-    azureSubscription: '$(WROKSPACE_SVC_CONNECTION')
+    azureSubscription: '$(WORKSPACE_SVC_CONNECTION)'
     workingDirectory: '$(Build.SourcesDirectory)'
     scriptLocation: inlineScript
     inlineScript: |
