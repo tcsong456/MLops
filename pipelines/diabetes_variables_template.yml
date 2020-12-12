@@ -46,4 +46,4 @@ variables:
   - name: EXPERIMENT_NAME
     value: diabetes_mlops
   - name: INSTALL_AZURE_CLI
-    value: 'false'
+    value: 'true'
