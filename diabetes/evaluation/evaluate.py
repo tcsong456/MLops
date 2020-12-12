@@ -35,7 +35,7 @@ try:
         model_mse = None
         if metric_eval in model.tags:
             model_mse = float(model.tags[metric_eval])
-        new_run_mse = float(run.parent.get_metircs().get(metric_eval))
+        new_run_mse = float(run.parent.get_metrics().get(metric_eval))
         if model_mse is None or new_run_mse is None:
             if allow_run_cancel == 'true':
                 run.parent.cancel()
