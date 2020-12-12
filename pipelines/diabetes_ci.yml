@@ -68,7 +68,7 @@ stages:
                 AMLPIPELINEID="$(cat pipeline_id.txt)"
                 echo "##vso[task.setvariable variable=AMLPIPELINEID;isOutput=true]$AMLPIPELINEID"
       - job: 'Training Report'
-        dependsOn: 'Run_pipeline'
+        dependsOn: 'Run_Pipeline'
         displayName: 'check if model is registered'
         container: mlops
         condition: always()
