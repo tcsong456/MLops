@@ -1,6 +1,5 @@
-from azureml.core.rungconfig import Run
 from azureml.core.model import Model
-from azureml.core import Dataset
+from azureml.core import Dataset,Run
 import argparse
 import json
 import os
