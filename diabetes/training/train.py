@@ -37,7 +37,7 @@ def train_model(data,ridge_args):
 def get_model_metrics(model,data):
     preds = model.predict(data['test']['X'])
     mse = mean_squared_error(data['test']['Y'],preds)
-    metric = {'mse':mse}
+    metric = {"mse":mse}
     return metric
 
 def main():
