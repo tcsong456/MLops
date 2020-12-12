@@ -1,7 +1,7 @@
 steps:
 - task: AzureCLI@1
   displayName: 'Install AzureML CLI'
-  condition: eq(variables['INSTALL-AZURE-CLI'],'true')
+  condition: eq(variables['INSTALL_AZURE_CLI'],'true')
   inputs:
     azureSubscription: '$(WORKSPACE_SVC_CONNECTION)'
     scriptLocation: inlineScript
