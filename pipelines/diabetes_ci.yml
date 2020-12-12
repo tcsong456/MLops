@@ -74,7 +74,7 @@ stages:
         condition: always()
         timeinOutMinutes: 0
         steps:
-          - template: ml_service.utils.run_train_pipeline.yml
+          - template: pipelines.diabetes_variables_template.yml
 
         
              
