@@ -2,6 +2,7 @@ from azureml.core import Run
 from utils.model_utils import get_model
 import argparse
 import traceback
+import numpy as np
 
 parser = argparse.ArgumentParser('evaluate')
 arg = parser.add_argument
@@ -32,10 +33,11 @@ try:
                       tag_name='experiment_name',
                       tag_value=exp.name)
     if model is not None:
-        model_mse = None
+        model_mse = np.inf
         if metric_eval in model.tags:
             model_mse = float(model.tags[metric_eval])
         new_run_mse = float(run.parent.get_metrics().get(metric_eval))
+        print(model_mse,new_run_mse)
         if model_mse is None or new_run_mse is None:
             if allow_run_cancel == 'true':
                 run.parent.cancel()
