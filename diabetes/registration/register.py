@@ -78,12 +78,13 @@ def main():
         register_tags = {'tags':[]}
     
     model_tags = {}
-    try:
-        for tag in register_tags:
+    print(run.parent.get_metrics())
+    for tag in register_tags:
+        try:
             mtag = run.parent.get_metrics()[tag]
             model_tags[tag] = mtag
-    except KeyError:
-        print('could not find tag in parent run')
+        except KeyError:
+            print('could not find tag in parent run')
     
     model_file = os.path.join(model_path,model_name)
     model = joblib.load(model_file)
