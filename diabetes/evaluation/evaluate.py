@@ -36,8 +36,8 @@ try:
         model_mse = np.inf
         if metric_eval in model.tags:
             model_mse = float(model.tags[metric_eval])
+        print(model_mse,run.parent.get_metrics())
         new_run_mse = float(run.parent.get_metrics().get(metric_eval))
-        print(model_mse,new_run_mse)
         if model_mse is None or new_run_mse is None:
             if allow_run_cancel == 'true':
                 run.parent.cancel()
