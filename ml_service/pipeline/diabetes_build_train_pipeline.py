@@ -73,8 +73,8 @@ def main():
                                   runconfig=run_config,
                                   source_directory=e.source_train_directory,
                                   outputs=[pipeline_data],
-                                  allow_reuse=False)
-    print('Train step created!')
+                                  allow_reuse=True)
+    print('Train step created!')    
     
     eval_step = PythonScriptStep(name='eval_step',
                                  script_name=e.eval_script_path,

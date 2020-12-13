@@ -78,8 +78,7 @@ def main():
         register_tags = {'tags':[]}
     
     model_tags = {}
-    print(run.parent.get_metrics())
-    for tag in register_tags:
+    for tag in register_tags['tags']:
         try:
             mtag = run.parent.get_metrics()[tag]
             model_tags[tag] = mtag
