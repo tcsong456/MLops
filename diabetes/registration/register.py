@@ -1,6 +1,5 @@
-from azureml.core.rungconfig import Run
 from azureml.core.model import Model
-from azureml.core import Dataset
+from azureml.core import Dataset,Run
 import argparse
 import json
 import os
@@ -54,7 +53,7 @@ def main():
     exp = run.experiment
     run_id = 'amlcompute'
     
-    parser = argparse('registeration')
+    parser = argparse.ArgumentParser('registeration')
     arg = parser.add_argument
     arg('--model-name',type=str,default='diabetes_regression_model.pkl',
         help='the name of the model')
@@ -79,14 +78,14 @@ def main():
         register_tags = {'tags':[]}
     
     model_tags = {}
-    try:
-        for tag in register_tags:
+    for tag in register_tags['tags']:
+        try:
             mtag = run.parent.get_metrics()[tag]
             model_tags[tag] = mtag
-    except KeyError:
-        print('could not find tag in parent run')
+        except KeyError:
+            print('could not find tag in parent run')
     
-    model_file = os.path.joiin(model_path,model_name)
+    model_file = os.path.join(model_path,model_name)
     model = joblib.load(model_file)
     parent_tags = run.parent.get_tags()
     

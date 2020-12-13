@@ -1,7 +1,8 @@
 from azureml.core import Run
-from diabetes.utils.model_utils import get_model
+from utils.model_utils import get_model
 import argparse
 import traceback
+import numpy as np
 
 parser = argparse.ArgumentParser('evaluate')
 arg = parser.add_argument
@@ -9,7 +10,7 @@ arg('--model-name',type=str,default='diabetes_model.pkl',
     help='the name of the model')
 arg('--run-id',type=str,
     help='running id of training')
-arg('--allow-run-cancel',type=str,
+arg('--allow-run-cancel',type=str,default='true',
     help='set to true to cancel unsuccessful evalutation run')
 args = parser.parse_args()
 
@@ -32,10 +33,11 @@ try:
                       tag_name='experiment_name',
                       tag_value=exp.name)
     if model is not None:
-        model_mse = None
+        model_mse = np.inf
         if metric_eval in model.tags:
             model_mse = float(model.tags[metric_eval])
-        new_run_mse = float(run.parent.get_metircs().get(metric_eval))
+        print(model_mse,run.parent.get_metrics())
+        new_run_mse = float(run.parent.get_metrics().get(metric_eval))
         if model_mse is None or new_run_mse is None:
             if allow_run_cancel == 'true':
                 run.parent.cancel()
@@ -52,4 +54,3 @@ try:
 except Exception:
     traceback.print_exc(limit=None,file=None,chain=True)
     raise
-    

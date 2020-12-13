@@ -4,7 +4,7 @@ from azureml.core import Workspace,Experiment
 from azureml.pipeline.core import PublishedPipeline
 
 def main():
-    parser = argparse('trigger_pipeline')
+    parser = argparse.ArgumentParser('trigger_pipeline')
     arg = parser.add_argument
     arg('--output-write-file',type=str,default='pipeline_id_recorder',
         help='the text file to write piepeline id')
@@ -19,7 +19,7 @@ def main():
                                   resource_group=e.resource_group
                                   ) 
     
-    published_pipeline = PublishedPipeline.get(aml_workspace)
+    published_pipeline = PublishedPipeline.list(aml_workspace)
     matched_pipes = []
     for pipe in published_pipeline:
         if pipe.name == e.pipeline_name:
@@ -40,7 +40,7 @@ def main():
             with open(args.output_write_file,'w') as output_file:
                 output_file.write(published_pipeline.id)
             
-        if args.skip_train_file is False:
+        if args.skip_train_exc is False:
             pipeline_param = {'model_name':e.model_name}
             tags = {'build_id':e.build_id}
             if e.build_uri is not None:

@@ -1,7 +1,7 @@
 from azureml.core import Datastore,Dataset
 from azureml.core.run import Run
 from sklearn.model_selection import train_test_split
-from skelearn.linear_model import Ridge
+from sklearn.linear_model import Ridge
 from sklearn.metrics import mean_squared_error
 import argparse
 import pprint
@@ -37,7 +37,7 @@ def train_model(data,ridge_args):
 def get_model_metrics(model,data):
     preds = model.predict(data['test']['X'])
     mse = mean_squared_error(data['test']['Y'],preds)
-    metric = {'mse':mse}
+    metric = {"mse":mse}
     return metric
 
 def main():
@@ -68,7 +68,7 @@ def main():
     dataset_version = args.dataset_version
     run = Run.get_context()
     
-    with open('diabetes/parameters.json') as f:
+    with open('parameters.json') as f:
         pars = json.load(f)
     try:
         train_args = pars['training']
@@ -98,7 +98,7 @@ def main():
     
     df = dataset.to_pandas_dataframe()
     data = split_data(df)
-    model = train_model(df,train_args)
+    model = train_model(data,train_args)
     metrics = get_model_metrics(model,data)
     for key,value in metrics.items():
         run.log(key,value)
