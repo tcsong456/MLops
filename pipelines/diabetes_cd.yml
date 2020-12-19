@@ -12,7 +12,7 @@ resources:
     - container: mlops
       image: mcr.microsoft.com/mlops/python:latest
   pipelines:
-    - pipeline: Model_Train_CI
+    - pipeline: Model-Train-CI
       source: Model-Train-Register-CI
       trigger:
         branches:
@@ -36,7 +36,7 @@ stages:
           - download: none
           - template: diabetes_get_model_artifacts.yml
             parameters:
-              projectID: 'resources.pipeline.Model_Train_CI.projectID'
-              pipelineID: 'resources.pipeline.Model_Train_CI.pipelineID'
-              artifactBuildID: '{{ paramters.artifactBuildID }}'
+              projectID: 'resources.pipeline.Model-Train-CI.projectID'
+              pipelineID: 'resources.pipeline.Model-Train-CI.pipelineID'
+              artifactBuildID: '${{ parameters.artifactBuildID }}'
   
