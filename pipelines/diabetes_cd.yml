@@ -12,8 +12,8 @@ resources:
   - container: mlops
     image: mcr.microsoft.com/mlops/python:latest
   pipelines:
-  - pipeline: modeltrainaci
-    source: Model-Train-Register-CI
+  - pipeline: model-train-ci
+    source: diabetes_regression_pipeline
     trigger:
       branches:
         include:
