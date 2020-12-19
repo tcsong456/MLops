@@ -12,7 +12,7 @@ resources:
     - container: mlops
       image: mcr.microsoft.com/mlops/python:latest
   pipelines:
-    - pipeline: Model-Train-CI
+    - pipeline: model-train-ci
       source: Model-Train-Register-CI
       trigger:
         branches:
@@ -20,7 +20,7 @@ resources:
           - master
 
 variables:
-  - group: mlops-diabets-aml-vg
+  - group: mlops-diabetes-aml-vg
   - template: diabetes_variables_template.yml
 
 stages:
@@ -36,7 +36,7 @@ stages:
           - download: none
           - template: diabetes_get_model_artifacts.yml
             parameters:
-              projectID: 'resources.pipeline.Model-Train-CI.projectID'
-              pipelineID: 'resources.pipeline.Model-Train-CI.pipelineID'
+              projectID: 'resources.pipeline.model-train-ci.projectID'
+              pipelineID: 'resources.pipeline.model-train-ci.pipelineID'
               artifactBuildID: '${{ parameters.artifactBuildID }}'
   
