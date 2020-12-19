@@ -1,0 +1,42 @@
+parameters:
+  - name: artifactBuildID
+    displayName: Model CI Build ID
+    type: string
+    default: latest
+
+pr: none
+trigger: none
+
+resources:
+  containers:
+    - container: mlops
+      image: mcr.microsoft.com/mlops/python:latest
+  pipelines:
+    - pipeline: Model_Train_CI
+      source: Model-Train-Register-CI
+      trigger:
+        branches:
+          include:
+          - master
+
+variables:
+  - group: mlops-diabets-aml-vg
+  - template: diabetes_variables_template.yml
+
+Stages:
+  - stage: Deploy_ACI
+    diaplayName: Deploy to ACI
+    condition: variables['ACI_DEPLOYMENT_NAME']
+    jobs:
+      - job: ACI_Deployment
+        displayName: ACI Deployment
+        container: mlops
+        timeoutInMinutes: 0
+        steps: 
+          - download: none
+          - template: diabetes_get_model_artifacts.yml
+            parameters:
+              projectID: 'resources.pipeline.Model_Train_CI.projectID'
+              pipelineID: 'resources.pipeline.Model_Train_CI.pipelineID'
+              artifactBuildID: '{{ paramters.artifactBuildID }}'
+  
