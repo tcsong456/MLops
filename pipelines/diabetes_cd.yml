@@ -12,12 +12,12 @@ resources:
     - container: mlops
       image: mcr.microsoft.com/mlops/python:latest
   pipelines:
-    - pipeline: model-train-ci
-      source: Model-Train-Register-CI
-      trigger:
-        branches:
-          include:
-          - master
+  - pipeline: model-train-ci
+    source: Model-Train-Register-CI
+    trigger:
+      branches:
+        include:
+        - master
 
 variables:
   - group: mlops-diabetes-aml-vg
