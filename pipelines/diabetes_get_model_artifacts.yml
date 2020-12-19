@@ -7,7 +7,7 @@ parameters:
     default: ''
   - name: artifactBuildID
     type: string
-    defautl: latest
+    default: latest
 
 steps:
   - download: none
@@ -17,12 +17,12 @@ steps:
       source: 'specific'
       project: '${{ parameters.projectID }}'
       pipeline: '${{ parameters.pipelineID }}'
-      preferTriggerPipeline: true
-        ${{ if eq(parameters.artifactBuildID,'latest') }}:
-          buildVersionToDownload: 'latestFromBranch'
-        ${{ if ne(parameters.artifactBuildID,'latest') }}:
-          buildVersionToDownload: 'specific'
-          runId: '${{ parameters.artifactBuildID }}'
+      preferTriggeringPipeline: true
+      ${{ if eq(parameters.artifactBuildID, 'latest') }}:
+        buildVersionToDownload: 'latestFromBranch'
+      ${{ if ne(parameters.artifactBuildID, 'latest') }}:
+        buildVersionToDownload: 'specific'
+        runId: '${{ parameters.artifactBuildID }}'
       runBranch: '$(Build.SourceBranch)'
       path: '$(Build.SourcesDirectory)/bin'
   - task: Bash@3
