@@ -9,8 +9,8 @@ trigger: none
 
 resources:
   containers:
-    - container: mlops
-      image: mcr.microsoft.com/mlops/python:latest
+  - container: mlops
+    image: mcr.microsoft.com/mlops/python:latest
   pipelines:
   - pipeline: model-train-ci
     source: Model-Train-Register-CI
