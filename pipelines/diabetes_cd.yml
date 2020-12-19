@@ -23,9 +23,9 @@ variables:
   - group: mlops-diabets-aml-vg
   - template: diabetes_variables_template.yml
 
-Stages:
+stages:
   - stage: Deploy_ACI
-    diaplayName: Deploy to ACI
+    displayName: Deploy to ACI
     condition: variables['ACI_DEPLOYMENT_NAME']
     jobs:
       - job: ACI_Deployment
