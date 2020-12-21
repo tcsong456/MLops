@@ -39,5 +39,5 @@ stages:
             parameters:
               projectID: '$(resources.pipeline.model-train-ci.projectID)'
               pipelineID: '$(resources.pipeline.model-train-ci.pipelineID)'
-              artifactBuildID: '${{ paramters.artifactBuildID }}'
+              artifactBuildID: '${{ parameters.artifactBuildID }}'
   
