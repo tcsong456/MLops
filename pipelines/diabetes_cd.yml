@@ -12,12 +12,12 @@ resources:
     - container: mlops
       image: mcr.microsoft.com/mlops/python:latest
   pipelines:
-    - pipeline: modeltrainci
+    - pipeline: DiabetesRegression
       source: Model-Train-Register-CI
       trigger:
         branches:
           include:
-          - master
+          - main
           - iaac
 
 variables:
