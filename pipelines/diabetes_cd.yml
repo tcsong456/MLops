@@ -13,7 +13,7 @@ resources:
       image: mcr.microsoft.com/mlops/python:latest
   pipelines:
     - pipeline: DiabetesRegression
-      source: Model-Train-Register-CI
+      source: diabetes_regression_pipeline
       trigger:
         branches:
           include:
