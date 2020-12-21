@@ -7,7 +7,7 @@ parameters:
     default: ''
   - name: artifactBuildID
     type: string
-    defautl: latest
+    default: latest
 
 steps:
   - download: none

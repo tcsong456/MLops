@@ -12,7 +12,7 @@ resources:
     - container: mlops
       image: mcr.microsoft.com/mlops/python:latest
   pipelines:
-    - pipeline: modeltrainci
+    - pipeline: model-train-ci
       source: Model-Train-Register-CI
       trigger:
         branches:
@@ -24,9 +24,9 @@ variables:
   - group: devopsforai-aml-vg
   - template: diabetes_variables_template.yml
 
-Stages:
+stages:
   - stage: Deploy_ACI
-    diaplayName: Deploy to ACI
+    displayName: Deploy to ACI
     condition: variables['ACI_DEPLOYMENT_NAME']
     jobs:
       - job: ACI_Deployment
@@ -37,7 +37,7 @@ Stages:
           - download: none
           - template: diabetes_get_model_artifacts.yml
             parameters:
-              projectID: 'resources.pipeline.Model_Train_CI.projectID'
-              pipelineID: 'resources.pipeline.Model_Train_CI.pipelineID'
+              projectID: 'resources.pipeline.model-train-ci.projectID'
+              pipelineID: 'resources.pipeline.model-train-ci.pipelineID'
               artifactBuildID: '{{ paramters.artifactBuildID }}'
   
