@@ -37,7 +37,7 @@ stages:
           - download: none
           - template: diabetes_get_model_artifacts.yml
             parameters:
-              projectID: 'resources.pipeline.model-train-ci.projectID'
-              pipelineID: 'resources.pipeline.model-train-ci.pipelineID'
-              artifactBuildID: '{{ paramters.artifactBuildID }}'
+              projectID: '$(resources.pipeline.model-train-ci.projectID)'
+              pipelineID: '$(resources.pipeline.model-train-ci.pipelineID)'
+              artifactBuildID: '${{ paramters.artifactBuildID }}'
   
