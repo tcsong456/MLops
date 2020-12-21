@@ -12,7 +12,7 @@ resources:
     - container: mlops
       image: mcr.microsoft.com/mlops/python:latest
   pipelines:
-    - pipeline: DiabetesRegression
+    - pipeline: diabetes_regression_pipeline
       source: diabetes_regression_pipeline
       trigger:
         branches:
