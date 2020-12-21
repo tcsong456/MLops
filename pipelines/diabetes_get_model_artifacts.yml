@@ -11,7 +11,7 @@ parameters:
 
 steps:
   - download: none
-  - task: DownloadPipelineAartifact@2
+  - task: DownloadPipelineArtifact@2
     displayName: Download Pipeline Artifacts
     inputs:
       source: 'specific'
