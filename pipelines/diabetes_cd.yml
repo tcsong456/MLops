@@ -59,6 +59,6 @@ stages:
                 --ic inference_config.yml \
                 --dc deployment_config_aci.yml \
                 -g $(RESOURCE_GROUP) --workspace-name $(WORKSPACE_NAME) \
-                -overwrite -v
+                --overwrite -v
             
   
