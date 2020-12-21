@@ -12,13 +12,13 @@ resources:
     - container: mlops
       image: mcr.microsoft.com/mlops/python:latest
   pipelines:
-    - pipeline: diabetes_regression_pipeline
-      source: diabetes_regression_pipeline
+    - pipeline: model-train-ci
+      source: Model-Train-Register-CI
       trigger:
         branches:
           include:
-            - 'main'
-            - 'iaac'
+            - main
+            - iaac
 
 variables:
   - group: devopsforai-aml-vg
