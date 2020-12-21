@@ -18,9 +18,10 @@ resources:
         branches:
           include:
           - master
+          - iaac
 
 variables:
-  - group: mlops-diabets-aml-vg
+  - group: devopsforai-aml-vg
   - template: diabetes_variables_template.yml
 
 Stages:
