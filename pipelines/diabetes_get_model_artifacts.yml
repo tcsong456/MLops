@@ -24,12 +24,12 @@ steps:
         buildVersionToDownload: 'specific'
         runId: '${{ parameters.artifactBuildID }}'
       runBranch: '$(Build.SourceBranch)'
-      path: '$(Build.SourcesDirectory)/bin'
+      path: $(Build.SourcesDirectory)/bin
   - task: Bash@3
     name: get_model
     displayName: Parse Json for model name and model version
     inputs:
-      targetType: inline
+      targetType: 'inline'
       script: |
         cat $(Build.SourcesDirectory)/bin/model/model.json | jq '.'
         MODEL_NAME=$(jq -r '.name' <$(Build.SourcesDirectory)/bin/model/model.json)
