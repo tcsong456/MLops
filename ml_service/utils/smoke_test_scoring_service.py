@@ -6,8 +6,10 @@ import requests
 import time
 import argparse
 
-input = {"data": [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-                  [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]]}
+#input = {"data": [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+#                  [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]]}
+input = {'data':[[11,12,13,14,15],
+                 [20,19,18,17,16]]}
 output_len = 2
 
 def call_web_service(e,service_type,service_name):
@@ -69,7 +71,8 @@ if __name__ == '__main__':
     print('Verifying output validlity')
     assert 'result' in output
     assert len(output['result']) == output_len
-    print(output)
+    import os
+    print(os.getenv('AZURE_MODEL_DIR'))
     print('Smoke test successful!')
     
     
