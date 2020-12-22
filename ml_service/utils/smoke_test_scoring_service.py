@@ -58,7 +58,7 @@ if __name__ == '__main__':
     arg('--service-name',type=str,
         required=True,
         help='specify the name of the service')
-    args = parser.parser_args()
+    args = parser.parse_args()
     
     e = ENV()
     service_type = args.service_type
