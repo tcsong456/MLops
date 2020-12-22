@@ -69,6 +69,6 @@ stages:
               inlineScript: |
                 set -e
                 export SUBSCRIPTION_ID=$(az account show --query id -o tsv)
-                python -m ml_service.utils.smoke_test_scoring_service --type 'ACI' --service $(ACI_DEPLOYMENT_NAME) 
+                python -m ml_service.utils.smoke_test_scoring_service --service-type 'ACI' --service-name $(ACI_DEPLOYMENT_NAME) 
             
   
