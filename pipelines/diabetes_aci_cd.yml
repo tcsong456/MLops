@@ -63,7 +63,7 @@ stages:
           - task: AzureCLI@1
             displayName: 'Smoke test'
             inputs:
-              azureSubscription: $(WORKSPACE_SV_CONNECTION)
+              azureSubscription: $(WORKSPACE_SVC_CONNECTION)
               scriptLocation: inlineScript
               workingDirectory: $(Build.SourcesDirectory)
               inlineScript: |
