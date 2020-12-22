@@ -1,6 +1,6 @@
 from azureml.core.webservice import AksWebservice,AciWebservice
 from azureml.core import Workspace
-from environment_variables import ENV
+from ml_service.utils.environment_variables import ENV
 import secrets
 import requests
 import time
