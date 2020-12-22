@@ -68,7 +68,7 @@ if __name__ == '__main__':
         output = call_web_service(e,service_type,args.service_name)
     print('Verifying output validlity')
     assert 'result' in output
-    assert len(output) == output_len
+    assert len(output['result']) == output_len
     print(output)
     print('Smoke test successful!')
     
