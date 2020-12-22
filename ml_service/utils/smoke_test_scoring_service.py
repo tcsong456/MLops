@@ -6,10 +6,8 @@ import requests
 import time
 import argparse
 
-#input = {"data": [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-#                  [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]]}
-input = {"dasta":[[10,11,12,13,14,15,16,17,18,19,
-                   19,18,17,16,15,14,13,12,11,10]]}
+input = {"data": [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                  [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]]}
 output_len = 2
 
 def call_web_service(e,service_type,service_name):
