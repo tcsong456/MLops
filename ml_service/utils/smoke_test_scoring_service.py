@@ -27,7 +27,7 @@ def call_web_service(e,service_type,service_name):
         service_keys = service.get_keys()
         headers['Authorization'] = 'Bearer ' + service_keys[0]
     
-    scoring_url = service.scoring_url
+    scoring_url = service.scoring_uri
     print(f'scoring url: {scoring_url}')
     output = call_web_app(scoring_url,headers)
     
