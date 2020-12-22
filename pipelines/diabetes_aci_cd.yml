@@ -60,5 +60,15 @@ stages:
                 --dc deployment_config_aci.yml \
                 -g $(RESOURCE_GROUP) --workspace-name $(WORKSPACE_NAME) \
                 --overwrite -v
+          - task: AzureCLI@1
+            displayName: 'Smoke test'
+            inputs:
+              azureSubscription: $(WORKSPACE_SV_CONNECTION)
+              scriptLocation: inlineScript
+              workingDirectory: $(Build.SourcesDirectory)
+              inlineScript: |
+                set -e
+                export SUBSCRIPTION_ID=$(az account show --query id -o tsv)
+                python -m ml_service.utils.smoke_test_scoring_service --type 'ACI' --service $(ACI_DEPLOYMENT_NAME) 
             
   
