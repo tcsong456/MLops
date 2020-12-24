@@ -46,18 +46,18 @@ stages:
               pipelineID: $(resources.pipeline.model-train-ci.pipelineID)
               artifactBuildID: ${{ parameters.artifactBuildID }}
           - task: AzureCLI@1
-            diplayName: 'Publish Batchscore Pipeline'
+            displayName: 'Publish Batchscore Pipeline'
             name: 'publish_batchscore_pipeline'
             inputs:
               azureSubscription: $(WORKSPACE_SVC_CONNECTION)
               scriptLocation: inlineScript
-              workingDirectory: %(Build.SourcesDirectory)
+              workingDirectory: $(Build.SourcesDirectory)
               inlineScript: |
                 set -e
                 export SUBSCRIPTION_ID=$(az account show --query id -o tsv)
                 python -m ml_service.pipeline.diabetes_parallel_batchscore_pipeline
-             env:
-               SCORING_DATASTORE_ACCESS_KEY: $(SCORING_DATASTORE_ACCESS_KEY)
+            env:
+              SCORING_DATASTORE_ACCESS_KEY: $(SCORING_DATASTORE_ACCESS_KEY)
           - task: AzureCLI@1
             displayName: 'running batchscore pipeline'
             name: 'batchscore_pipeline_run'
