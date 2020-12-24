@@ -57,6 +57,8 @@ variables:
     value: 'output'
   - name: SCORING_DATASTORE_INPUT_FILENAME
     value: 'diabetes_input.csv'
+  - name: SCORING_DATASTORE_OUTPUT_FILENAME
+    value: 'diabetes_output.csv'
   - name: SCORING_DATASET_NAME
     value: 'diabetes_input_scoring'
   - name: AML_REBUILD_SCORING_ENV

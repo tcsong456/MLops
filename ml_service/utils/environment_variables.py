@@ -40,6 +40,7 @@ class ENV:
     scoring_datastore_output_container: Optional[str] = os.environ.get('SCORING_DATASTORE_OUTPUT_CONTAINER')
     scoring_datastore_storage_name : Optional[str] = os.environ.get('SCORING_DATASTORE_STORAGE_NAME')
     scoring_datastore_input_filename: Optional[str] = os.environ.get('SCORING_DATASTORE_INPUT_FILENAME')
+    scoring_datastore_output_filename: Optional[str] = os.environ.get('SCORING_DATASTORE_OUTPUT_FILENAME')
     scoring_dataset_name: Optional[str] = os.environ.get('SCORING_DATASET_NAME')
     scoring_pipeline_name: Optional[str] = os.environ.get('SCORING_PIPELINE_NAME')
     use_gpu_for_scoring: Optional[str] = os.environ.get('USE_GPU_FOR_SCORING')
