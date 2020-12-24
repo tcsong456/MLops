@@ -1,6 +1,6 @@
 import argparse
+from azure.storage.blob import ContainerClient
 from azureml.pipeline.core import PublishedPipeline
-from azureml.storage.blob import ContainerClient
 from azureml.core import Workspace,Experiment
 from ml_service.utils.environment_variables import ENV
 
