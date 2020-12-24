@@ -190,6 +190,7 @@ def build_batchscore_pipeline():
         print(pipeline_id)
     except Exception as ex:
         print(ex)
+        exit(1)
 
 if __name__ == '__main__':
     build_batchscore_pipeline()

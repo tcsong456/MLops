@@ -31,6 +31,9 @@ variables:
   - group: devopsforai-aml-vg
   - template: diabetes_variables_template.yml
 
+pool:
+  - vmImage: ubuntu-latest
+
 stages:
   - stage: 'Batch_Scoring_Pipeline_CI'
     displayName: 'creating batach scoring pipeline ci'
@@ -40,7 +43,7 @@ stages:
         container: mlops
         timeoutInMinutes: 0
         steps:
-          - template: diabetes_publish_model_artifacts_template.yml
+          - template: diabetes_get_model_artifacts.yml
             parameters:
               projectID: $(resources.pipeline.model-train-ci.projectID)
               pipelineID: $(resources.pipeline.model-train-ci.pipelineID)
