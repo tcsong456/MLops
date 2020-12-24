@@ -9,7 +9,7 @@ variables:
     value: 0
   - name: AML_CLUSTER_MAX_NODES
     value: 4
-  - name: AMLS_CLUSTER_MAX_NODES_SCORING
+  - name: AML_CLUSTER_MAX_NODES_SCORING
     value: 4
   - name: SOURCE_TRAIN_DIRECTORY
     value: diabetes
