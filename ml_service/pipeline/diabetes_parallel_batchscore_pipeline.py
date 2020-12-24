@@ -127,7 +127,7 @@ def get_scoring_pipeline(score_run_config,
     model_name_param = PipelineParameter('model-name',default_value='')
     model_version_param = PipelineParameter('model-version',default_value='')
     model_tag_name_param = PipelineParameter('model-tag-name',default_value='')
-    model_tag_value_param = PipelineParameter('model-tag_value',deffault_value='')
+    model_tag_value_param = PipelineParameter('model-tag-value',default_value='')
     
     score_step = ParallelRunStep(name='batch_scoring',
                                  inputs=[scoring_input],
