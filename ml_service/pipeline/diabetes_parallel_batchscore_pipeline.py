@@ -1,6 +1,6 @@
 from azureml.data.datapath import DataPath
-from azureml.core import Workspace,Datastore,Dataset
-from azureml.pipeline.core import Pipeline,PipelineData,RunConfiguration,Pipelineparameter
+from azureml.core import Workspace,Datastore,Dataset,RunConfiguration
+from azureml.pipeline.core import Pipeline,PipelineData,PipelineParameter
 from azureml.pipeline.steps import ParallelRunConfig,ParallelRunStep,PythonScriptStep
 from ml_service.pipeline.load_data import create_sample_data_csv
 from ml_service.utils.create_environment import get_environment
@@ -124,10 +124,10 @@ def get_scoring_pipeline(score_run_config,
                          env,
                          compute_target,
                          workspace):
-    model_name_param = Pipelineparameter('model-name',default_value='')
-    model_version_param = Pipelineparameter('model-version',default_value='')
-    model_tag_name_param = Pipelineparameter('model-tag-name',default_value='')
-    model_tag_value_param = Pipelineparameter('model-tag_value',deffault_value='')
+    model_name_param = PipelineParameter('model-name',default_value='')
+    model_version_param = PipelineParameter('model-version',default_value='')
+    model_tag_name_param = PipelineParameter('model-tag-name',default_value='')
+    model_tag_value_param = PipelineParameter('model-tag_value',deffault_value='')
     
     score_step = ParallelRunStep(name='batch_scoring',
                                  inputs=[scoring_input],
@@ -190,7 +190,9 @@ def build_batchscore_pipeline():
         print(pipeline_id)
     except Exception as ex:
         print(ex)
-    
+
+if __name__ == '__main__':
+    build_batchscore_pipeline()
     
     
     
