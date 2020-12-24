@@ -129,7 +129,7 @@ def get_scoring_pipeline(score_run_config,
     model_tag_name_param = PipelineParameter('model-tag-name',default_value='')
     model_tag_value_param = PipelineParameter('model-tag-value',default_value='')
     
-    score_step = ParallelRunStep(name='batch_scoring',
+    score_step = ParallelRunStep(name='scoring_step',
                                  inputs=[scoring_input],
                                  output=output_loc,
                                  arguments=['--model-name',model_name_param,
@@ -138,9 +138,9 @@ def get_scoring_pipeline(score_run_config,
                                             '--model-tag-value',model_tag_value_param],
                                 allow_reuse=False,
                                 parallel_run_config=score_run_config,
-                                source_directory=env.source_train_directory,
                                 )
-    copy_step = PythonScriptStep(script_name=env.batch_scorecopy_script_path,
+    copy_step = PythonScriptStep(name='score_copy_step',
+                                 script_name=env.batch_scorecopy_script_path,
                                  source_directory=env.source_train_directory,
                                  inputs=[output_loc],
                                  allow_reuse=False,
