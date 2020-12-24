@@ -4,7 +4,7 @@ dependencies:
   - pip
   
   - pip:
-    azure-sdk==1.6.*
+    - azure-sdk==1.6.*
     - sikit-learn
     - pandas
     - numpy
