@@ -47,8 +47,8 @@ def copy_output(step_id,
 def run_batchscore_pipeline():
     try:
         env = ENV()
-        args = parse_args()
-        pipeline_id = args.pipeline_id
+#        args = parse_args()
+        pipeline_id = env.pipeline_id
         workspace = Workspace.get(name=env.workspace_name,
                                   subscription_id=env.subscription_id,
                                   resource_group=env.resource_group)
@@ -58,8 +58,8 @@ def run_batchscore_pipeline():
         exp = Experiment(workspace,name=env.experiment_name)
         run = exp.submit(scoring_pipeline,
                          pipeline_parameters={
-                                            'model-name':env.model_name,
-                                            'model-version':env.model_version,
+                                            'model-name':env.model_name_scoring,
+                                            'model-version':env.model_version_scoring,
                                             'model-tag-name':'',
                                             'model-tag-value':''})
         run.wait_for_completion(show_output=True)

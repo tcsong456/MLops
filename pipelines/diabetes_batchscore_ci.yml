@@ -61,14 +61,22 @@ stages:
                 python -m ml_service.pipeline.diabetes_parallel_batchscore_pipeline
             env:
               SCORING_DATASTORE_ACCESS_KEY: $(SCORING_DATASTORE_ACCESS_KEY)
-          - task: AzureCLI@1
-            displayName: 'running batchscore pipeline'
-            name: 'batchscore_pipeline_run'
-            inputs:
-              azureSubscription: $(WORKSPACE_SVC_CONNECTION)
-              scriptLocation: inlineScript
-              workingDirectory: $(Build.SourcesDirectory)
-              inlineScript: |
-                set -e 
-                export SUBSCRIPTION_ID=$(az account show --query id -o tsv)
-                python -m ml_service.pipeline.run_parallel_batchscore_pipeline
+      - job: 'Run_Scoring_Pipeline'
+        displayName: 'running scoring pipeline'
+        conainter: mlops
+        timeoutInMinutes: 240
+        dependsOn: 'Build_Batch_Scoring_Pipeline'
+        condition: succeeded()
+        varialbes: 
+          SCORING_PIPELINE_ID: $[dependencies.Build_Batch_Scoring_Pipeline.outputs['publish_batchscore_pipeline.pipeline_id']]
+          MODEL_NAME_SCORING: $[dependencies.Build_Batch_Scoring_Pipeline.outputs['get_model.MODEL_NAME']]
+          MODEL_VERSION_SCORING: $[dependencies.Build_Batch_Scoring_Pipeline.outputs['get_model.MODEL_VERSION']]
+        - task: AzureCLI@1
+          inputs:
+            azureSubscription: $(WORKSPACE_SVC_CONNECTION)
+            scriptLocation: inlineScript
+            workingDirectory: $(Build.SourcesDirectory)
+            inlineScript: |
+              set -e 
+              export SUBSCRIPTION_ID=$(az account show --query id -o tsv)
+              python -m ml_service.pipeline.run_parallel_batchscore_pipeline
