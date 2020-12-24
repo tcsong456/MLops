@@ -49,3 +49,4 @@ class ENV:
     max_nodes_scoring: Optional[int] = os.environ.get('AML_MAX_NODES_FOR_SCORING')
     aml_conda_score_file: Optional[str] = os.environ.get('AML_CONDA_SCORE_FILE')
     aml_conda_scorecopy_file: Optional[str] = os.environ.get('AML_CONDA_SCORECOPY_FILE')
+    compute_scoring_name: Optional[str] = os.environ.get('AML_COMPUTE_CLUSTER_SCORING')

@@ -75,3 +75,5 @@ variables:
     value: scoring/parallel_batchscore_copyoutput.py
   - name: SCORING_PIPELINE_NAME
     value: 'diabetes-scoring-pipeline'
+  - name: AML_COMPUTE_CLUSTER_SCORING
+    value: 'AML_COMPUTE_CLUSTER_SCORING'
