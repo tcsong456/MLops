@@ -110,7 +110,7 @@ def get_run_configs(workspace,
     copy_run_config = RunConfiguration()
     copy_run_config.environment = get_environment(workspace=workspace,
                                                   env_name=env.aml_env_scorecopy_name,
-                                                  conda_denpendencies=env.aml_conda_score_file,
+                                                  conda_dependencies=env.aml_conda_scorecopy_file,
                                                   create_new=env.rebuild_scoring_env,
                                                   enable_docker=True,
                                                   use_gpu=env.use_gpu_for_scoring)
