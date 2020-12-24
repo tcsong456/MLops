@@ -32,7 +32,7 @@ variables:
   - template: diabetes_variables_template.yml
 
 pool:
-  - vmImage: ubuntu-latest
+  vmImage: ubuntu-latest
 
 stages:
   - stage: 'Batch_Scoring_Pipeline_CI'
