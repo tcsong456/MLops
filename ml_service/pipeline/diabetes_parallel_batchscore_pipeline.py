@@ -164,7 +164,7 @@ def get_scoring_pipeline(score_run_config,
 def build_batchscore_pipeline():
     try:
         env = ENV()
-        ws = Workspace.get(name=env,
+        ws = Workspace.get(name=env.workspace_name,
                            subscription_id=env.subscription_id,
                            resource_group=env.resource_group)
         compute_target = get_compute(workspace=ws,
