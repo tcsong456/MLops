@@ -136,7 +136,7 @@ def get_scoring_pipeline(score_run_config,
                                             '--model-version',model_version_param,
                                             '--model-tag-name',model_tag_name_param,
                                             '--model-tag-value',model_tag_value_param],
-                                allow_resue=False,
+                                allow_reuse=False,
                                 parallel_run_config=score_run_config,
                                 source_directory=env.source_train_directory,
                                 )
