@@ -63,15 +63,17 @@ stages:
               SCORING_DATASTORE_ACCESS_KEY: $(SCORING_DATASTORE_ACCESS_KEY)
       - job: 'Run_Scoring_Pipeline'
         displayName: 'running scoring pipeline'
-        conainter: mlops
+        container: mlops
         timeoutInMinutes: 240
         dependsOn: 'Build_Batch_Scoring_Pipeline'
         condition: succeeded()
-        varialbes: 
+        variables: 
           SCORING_PIPELINE_ID: $[dependencies.Build_Batch_Scoring_Pipeline.outputs['publish_batchscore_pipeline.pipeline_id']]
           MODEL_NAME_SCORING: $[dependencies.Build_Batch_Scoring_Pipeline.outputs['get_model.MODEL_NAME']]
           MODEL_VERSION_SCORING: $[dependencies.Build_Batch_Scoring_Pipeline.outputs['get_model.MODEL_VERSION']]
+        steps:
         - task: AzureCLI@1
+          displayName: 'Invoking scoring pipeline'
           inputs:
             azureSubscription: $(WORKSPACE_SVC_CONNECTION)
             scriptLocation: inlineScript
