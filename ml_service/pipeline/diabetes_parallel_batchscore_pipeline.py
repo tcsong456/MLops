@@ -188,13 +188,15 @@ def build_batchscore_pipeline():
                                                       description="Diabetes Batch Scoring Pipeline")
         pipeline_id = f'##vso[task.setvariable variable=pipeline_id;isOutput=true]{published_pipeline.id}'
         print(pipeline_id)
-    except Exception as ex:
-        print(ex)
+    except Exception as e:
+        import traceback
+        import sys
+        print('Failed!')
+        traceback.print_exc(limit=5,file=sys.stdout)
         exit(1)
 
 if __name__ == '__main__':
     build_batchscore_pipeline()
     
-    
-    
+
 
