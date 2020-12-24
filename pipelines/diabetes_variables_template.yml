@@ -64,9 +64,7 @@ variables:
   - name: USE_GPU_FOR_SCORING
     value: False
   - name: BATCHSCORE_SCRIPT_PATH
-    value: scoring/parallel_batchscore.py
-  - name: AML_MAX_NODES_FOR_SCORING
-    value: 4
+    value: scoring/parallel_batch_score.py
   - name: AML_CONDA_SCORE_FILE
     value: 'conda_dependencies_scoring.yml'
   - name: AML_CONDA_SCORECOPY_FILE
