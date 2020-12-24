@@ -66,8 +66,9 @@ def run_batchscore_pipeline():
         if run.get_status() == 'Finished':
             copy_output(list(run.get_steps()).id,env)
         print('running scccessful!')
-    except Exception as ex:
-        print(ex)
+    except Exception as e:
+        import traceback
+        traceback.print_exc(limit=20)
         exit(1)
 
 if __name__ == '__main__':

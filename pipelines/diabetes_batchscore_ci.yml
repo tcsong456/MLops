@@ -41,7 +41,7 @@ stages:
       - job: 'Build_Batch_Scoring_Pipeline'
         displayName: 'building batch scoring pipeline'
         container: mlops
-        timeoutInMinutes: 0
+        timeoutInMinutes: 
         steps:
           - template: diabetes_get_model_artifacts.yml
             parameters:
@@ -68,7 +68,7 @@ stages:
               azureSubscription: $(WORKSPACE_SVC_CONNECTION)
               scriptLocation: inlineScript
               workingDirectory: $(Build.SourcesDirectory)
-              inlineScript:
+              inlineScript: |
                 set -e 
                 export SUBSCRIPTION_ID=$(az account show --query id -o tsv)
                 python -m ml_service.pipeline.run_parallel_batchscore_pipeline
