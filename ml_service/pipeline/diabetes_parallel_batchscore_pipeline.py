@@ -105,7 +105,7 @@ def get_run_configs(workspace,
                                          error_threshold=10,
                                          output_action='append_row',
                                          compute_target=compute_target,
-                                         node_count=env.max_scoring_nodes,
+                                         node_count=env.max_nodes_scoring,
                                          run_invocation_timeout=300)
     copy_run_config = RunConfiguration()
     copy_run_config.environment = get_environment(workspace=workspace,
