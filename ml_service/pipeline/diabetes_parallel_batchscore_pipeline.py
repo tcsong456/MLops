@@ -96,7 +96,7 @@ def get_run_configs(workspace,
     environment = get_environment(workspace=workspace,
                                   env_name=env.aml_env_scoring_name,
                                   conda_dependencies=env.aml_conda_score_file,
-                                  create_new=env.aml_rebuild_scoring_env,
+                                  create_new=env.rebuild_scoring_env,
                                   enable_docker=True,
                                   use_gpu=env.use_gpu_for_scoring)
     score_run_config = ParallelRunConfig(environment=environment,
