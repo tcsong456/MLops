@@ -1,0 +1,10 @@
+name: diabetes_batch_scoring_dependencies
+dependencies:
+  - python=3.7.*
+  - pip
+  
+  - pip:
+    azure-sdk==1.6.*
+    - sikit-learn
+    - pandas
+    - numpy

@@ -70,8 +70,6 @@ if __name__ == '__main__':
     assert 'result' in output
     assert len(output['result']) == output_len
     print(output)
-    import os
-    print(os.getenv('AZURE_MODEL_DIR'))
     print('Smoke test successful!')
     
     

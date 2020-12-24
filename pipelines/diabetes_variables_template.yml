@@ -17,6 +17,10 @@ variables:
     value: 'conda_dependencies.yml'
   - name: AML_ENV_NAME
     value: diabetes_regression_training_env
+  - name: AML_ENV_SCORING_NAME
+    value: diabetes_batch_scoring_env
+  - name: AML_ENV_SCORECOPY_NAME
+    value: diabetes_batch_scorecopy_env
   - name: AML_REBUILD_ENVIRONMENT
     value: 'false'
   - name: MODEL_NAME
@@ -33,11 +37,11 @@ variables:
     value: registration/register.py
   - name: TRAINING_PIPELINE_NAME
     value: 'diabetes_regression_pipeline'
-#  - name: SUBSCRIPTION_ID
-#    value: 64c727c2-4f98-4ef1-a45f-09eb33c1bd59    
   - name: AML_COMPUTE_CLUSTER_NAME
     value: train-cluster
   - name: AML_COMPUTE_CLUSTER_CPU_SKU
+    value: STANDARD_DS2_V2
+  - name: AML_COMPUTE_CLUSTER_CPU_SKU_SCORING
     value: STANDARD_DS2_V2
   - name: ALLOW_RUN_CANCEL
     value: 'true'
@@ -47,3 +51,27 @@ variables:
     value: diabetes_mlops
   - name: INSTALL_AZURE_CLI
     value: 'true'
+  - name: SCORING_DATASTORE_INPUT_CONTAINER
+    value: 'input'
+  - name: SCORING_DATASTORE_OUTPUT_CONTAINER
+    value: 'output'
+  - name: SCORING_DATASTORE_INPUT_FILENAME
+    value: 'diabetes_input.csv'
+  - name: SCORING_DATASET_NAME
+    value: 'diabetes_input_scoring'
+  - name: AML_REBUILD_SCORING_ENV
+    value: 'true'
+  - name: USE_GPU_FOR_SCORING
+    value: False
+  - name: BATCHSCORE_SCRIPT_PATH
+    value: scoring/parallel_batchscore.py
+  - name: AML_MAX_NODES_FOR_SCORING
+    value: 4
+  - name: AML_CONDA_SCORE_FILE
+    value: 'conda_dependencies_scoring.yml'
+  - name: AML_CONDA_SCORECOPY_FILE
+    value: 'conda_dependencies_scorecopy.yml'
+  - name: BATCH_SCORECOPY_SCRIPT_PATH
+    value: scoring/parallel_batchscore_copyoutput.py
+  - name: SCORING_PIPELINE_NAME
+    value: 'diabetes-scoring-pipeline'
