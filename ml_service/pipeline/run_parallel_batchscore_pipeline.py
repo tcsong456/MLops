@@ -65,5 +65,9 @@ def run_batchscore_pipeline():
         run.wait_for_completion(show_output=True)
         if run.get_status() == 'Finished':
             copy_output(list(run.get_steps()).id,env)
+        print('running scccessful!')
     except Exception as ex:
         print(ex)
+
+if __name__ == '__main__':
+    run_batchscore_pipeline()

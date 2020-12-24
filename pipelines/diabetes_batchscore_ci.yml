@@ -23,7 +23,7 @@ trigger:
       - main
   paths:
     include:
-      - diabetes/paralle_batch_score.py
+      - diabetes/scoring/parallel_batch_score.py
       - ml_service/pipeline/diabetes_parallel_batchscore_pipeline.py
       - ml_service/pipeline/run_parallel_batchscore_pipeline.py
 
