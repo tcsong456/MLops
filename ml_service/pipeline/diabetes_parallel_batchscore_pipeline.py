@@ -192,7 +192,7 @@ def build_batchscore_pipeline():
         import traceback
         import sys
         print('Failed!')
-        traceback.print_exc(limit=5,file=sys.stdout)
+        traceback.print_exc(limit=20,file=sys.stdout)
         exit(1)
 
 if __name__ == '__main__':
