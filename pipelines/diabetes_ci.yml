@@ -1,13 +1,18 @@
+#resources:
+#  containers:
+#    - container: mlops
+#      image: mcr.microsoft.com/mlops/python:latest
+
 resources:
   containers:
     - container: mlops
-      image: mcr.microsoft.com/mlops/python:latest
+      image: andysong199086/mlops-image:1.0
 
 pr: none
 trigger:
   branches:
     include:
-      - master
+      - main
   paths:
     include:
       - diabetes/
