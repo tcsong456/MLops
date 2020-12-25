@@ -5,6 +5,6 @@ dependencies:
   
   - pip:
     - azureml-sdk==1.6.*
-    - sikit-learn
+    - scikit-learn
     - pandas
     - numpy
