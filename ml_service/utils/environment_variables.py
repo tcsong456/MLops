@@ -10,6 +10,7 @@ class ENV:
     vm_priority: Optional[str] = os.environ.get('AML_CLUSTER_PRIORITY','lowpriority')
     vm_priority_scoring: Optional[str] = os.environ.get('AML_CLUSTER_PRIORITY_SCORING','lowpriority')
     vm_size: Optional[str] = os.environ.get('AML_COMPUTE_CLUSTER_CPU_SKU')
+    vm_size_scoring: Optional[str] = os.environ.get('AML_COMPUTE_CLUSTER_CPU_SKU_SCORING')
     min_nodes: Optional[int] = int(os.environ.get('AML_CLUSTER_MIN_NODES',0))
     min_nodes_scoring: Optional[int] = int(os.environ.get('AML_CLUSTER_MIN_NODES_SCORING',0))
     max_nodes: Optional[int] = int(os.environ.get('AML_CLUSTER_MAX_NODES',4))

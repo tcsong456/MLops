@@ -169,7 +169,7 @@ def build_batchscore_pipeline():
                            resource_group=env.resource_group)
         compute_target = get_compute(workspace=ws,
                                      compute_name=env.compute_scoring_name,
-                                     vm_size=env.vm_priority_scoring,
+                                     vm_size=env.vm_size_scoring,
                                      for_batch_scoring=True)
         score_run_config,copy_run_config = get_run_configs(workspace=ws,
                                                            env=env,
