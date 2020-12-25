@@ -60,8 +60,8 @@ def run_batchscore_pipeline():
                          pipeline_parameters={
                                             'model-name':env.model_name_scoring,
                                             'model-version':env.model_version_scoring,
-                                            'model-tag-name':'',
-                                            'model-tag-value':''})
+                                            'model-tag-name':" ",
+                                            'model-tag-value':" "})
         run.wait_for_completion(show_output=True)
         if run.get_status() == 'Finished':
             copy_output(list(run.get_steps()).id,env)
