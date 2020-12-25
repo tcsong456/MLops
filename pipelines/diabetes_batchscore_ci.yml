@@ -7,7 +7,7 @@ pr: none
 resources:
   containers:
     - container: mlops
-      image: mcr.microsoft.com/mlops/python:latest
+      image: andysong199086/mlops-image:2.0
   pipelines:
     - pipeline: model-train-ci
       source: Model-Train-Register-CI

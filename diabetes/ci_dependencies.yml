@@ -9,15 +9,14 @@ dependencies:
   - pandas=1.0.*
   - scikit-learn=0.22.*
     # dependencies for MLOps with R.
-  #- r=3.6.0
-  #- r-essentials=3.6.0
 
   - conda-forge::jq
   - pip=20.0.*
 
   - pip:
       # dependencies with versions aligned with conda_dependencies.yml.
-      #- azureml-sdk
+      - azureml-sdk
+      - azure-storage-blob
 
       # Additional pip dependencies for the CI environment.
       - pytest==5.4.*
