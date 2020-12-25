@@ -6,7 +6,7 @@
 resources:
   containers:
     - container: mlops
-      image: andysong199086/mlops-image:1.0
+      image: andysong199086/mlops-image:1.1
 
 pr: none
 trigger:
