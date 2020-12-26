@@ -54,7 +54,7 @@ def get_fallback_input_dataset(workspace,
     dataset = Dataset.Tabular.from_delimited_files(scoring_input_ds).register(workspace=workspace,
                                                                               name=env.scoring_dataset_name,
                                                                               create_new_version=False).as_named_input(env.scoring_dataset_name)
-    print(datastore,datastore.account_name,datastore.container_name)
+    print(datastore)
     
     return dataset
 
