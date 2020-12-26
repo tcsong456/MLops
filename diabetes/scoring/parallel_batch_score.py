@@ -45,6 +45,6 @@ def run(mini_batch):
             pred = model.predict(row.values.reshape(1,-1))
             result = (np.array(pred) if result is None else np.vstack([result,pred]))
         
-        return ([] if result is None else mini_batch.join(pd.DataFrame(result,columns=['score'])))
+        return ([] if result is None else pd.DataFrame(result,columns=['score']))
     except Exception as ex:
         print(ex)

@@ -32,7 +32,7 @@ def get_or_create_datastore(datastore_name,
 def get_input_dataset(workspace,
                       datastore,
                       env):
-    scoring_input_ds = Dataset.Tabuar.from_delimited_files(path=DataPath(datastore,env.scoring_datastore_input_filename))
+    scoring_input_ds = Dataset.Tabular.from_delimited_files(path=DataPath(datastore,env.scoring_datastore_input_filename))
     scoring_input_ds = scoring_input_ds.register(workspace=workspace,
                                                  name=env.scoring_dataset_name,
                                                  tag={'purpose':'for scoring','format':'csv'},
@@ -41,21 +41,24 @@ def get_input_dataset(workspace,
     return scoring_input_ds
 
 def get_fallback_input_dataset(workspace,
-                               env):
+                               env,
+                               datastore=None):
     create_sample_data_csv(env.scoring_datastore_input_filename,for_scoring=True)
     if not os.path.exists(env.scoring_datastore_input_filename):
         raise FileNotFoundError(f'dataset: {env.scoring_datastore_input_filename} not found in current direcotry!')
     
-    datastore = workspace.get_default_datastore()
+    if datastore is None:
+        datastore = workspace.get_default_datastore()
     scoring_input_ds = datastore.upload_files(files=[env.scoring_datastore_input_filename],
                                               target_path='scoring_input',
                                               overwrite=False)
     dataset = Dataset.Tabular.from_delimited_files(scoring_input_ds).register(workspace=workspace,
                                                                               name=env.scoring_dataset_name,
                                                                               create_new_version=False).as_named_input(env.scoring_dataset_name)
-    
     return dataset
 
+    
+    
 def get_output_location(workspace,
                         output_datastore=None):
     if output_datastore is not None:
@@ -78,6 +81,9 @@ def get_inputds_outputloc(env,
                                                   env=env,
                                                   workspace=workspace,
                                                   input=True)
+        get_fallback_input_dataset(workspace=workspace,
+                                   en=env,
+                                   datastore=input_datastore)
         output_datastore = get_or_create_datastore(f'{env.scoring_datastore_storage_name}_out',
                                                    env=env,
                                                    workspace=workspace,
