@@ -2,7 +2,7 @@ import sys
 import joblib
 import numpy as np
 import pandas as pd
-from diabetes.utils.model_utils import get_model
+from utils.model_utils import get_model
 from azureml.core import Model
 
 def parse_args():
