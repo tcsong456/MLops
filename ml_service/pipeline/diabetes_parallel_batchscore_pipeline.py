@@ -52,14 +52,9 @@ def get_fallback_input_dataset(workspace,
     scoring_input_ds = datastore.upload_files(files=[env.scoring_datastore_input_filename],
                                               target_path='diabetes_scoring_input',
                                               overwrite=True)
-#    dataset = Dataset.Tabular.from_delimited_files(scoring_input_ds).register(workspace=workspace,
-#                                                                              name=env.scoring_dataset_name,
-#                                                                              create_new_version=False).as_named_input(env.scoring_dataset_name)
-    dataset = Dataset.Tabular.from_delimited_files(path=DataPath(datastore,env.scoring_datastore_input_filename))
-    dataset.register(workspace=workspace,
-                     name=env.scoring_dataset_name,
-                     tag={'purpose':'for scoring','format':'csv'},
-                     create_new_version=True).as_named_input(env.scoring_dataset_name)
+    dataset = Dataset.Tabular.from_delimited_files(scoring_input_ds).register(workspace=workspace,
+                                                                              name=env.scoring_dataset_name,
+                                                                              create_new_version=False).as_named_input(env.scoring_dataset_name)
     
     return dataset
 
