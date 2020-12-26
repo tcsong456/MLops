@@ -50,7 +50,7 @@ def get_fallback_input_dataset(workspace,
     if datastore is None:
         datastore = workspace.get_default_datastore()
     scoring_input_ds = datastore.upload_files(files=[env.scoring_datastore_input_filename],
-                                              target_path='scoring_input',
+                                              target_path='diabetes_scoring_input',
                                               overwrite=True)
     dataset = Dataset.Tabular.from_delimited_files(scoring_input_ds).register(workspace=workspace,
                                                                               name=env.scoring_dataset_name,
@@ -81,16 +81,16 @@ def get_inputds_outputloc(env,
                                                   env=env,
                                                   workspace=workspace,
                                                   input=True)
-        get_fallback_input_dataset(workspace=workspace,
-                                   env=env,
-                                   datastore=input_datastore)
+        input_ds = get_fallback_input_dataset(workspace=workspace,
+                                               env=env,
+                                               datastore=input_datastore)
         output_datastore = get_or_create_datastore(f'{env.scoring_datastore_storage_name}_out',
                                                    env=env,
                                                    workspace=workspace,
                                                    input=False)
-        input_ds = get_input_dataset(workspace=workspace,
-                                     datastore=input_datastore,
-                                     env=env)
+#        input_ds = get_input_dataset(workspace=workspace,
+#                                     datastore=input_datastore,
+#                                     env=env)
         output_loc = get_output_location(workspace=workspace,
                                          output_datastore=output_datastore)
     
