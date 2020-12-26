@@ -35,13 +35,13 @@ def copy_output(step_id,
     container_client = ContainerClient(account_url=account_url,
                                        container_name=env.scoring_datastore_output_container,
                                        credential=env.scoring_datastore_access_key)
-    src_blob_properties = container_client.get_blob_container(src_blob_name).get_blob_properties()
+    src_blob_properties = container_client.get_blob_client(src_blob_name).get_blob_properties()
     
     destfolder = src_blob_properties.last_modified.date().isoformat()
     file_time = (src_blob_properties.last_modified.time()).isoformat('miliseconds').replace(':','_').replace('.','_')
     filename_parts = env.scoring_datastore_output_filename.split('.')
     dest_blob_name = f'{destfolder}/{filename_parts[0]}_{file_time}.{filename_parts[1]}'
-    dest_client = container_client.get_blob_container(dest_blob_name)
+    dest_client = container_client.get_blob_client(dest_blob_name)
     dest_client.start_copy_from_url(src_blob_url)
     
 def run_batchscore_pipeline():
