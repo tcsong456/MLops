@@ -42,7 +42,7 @@ def run(mini_batch):
     try:
         result = None
         for _,row in mini_batch.iterrows():
-            pred = model.predict(row)
+            pred = model.predict(row.values.reshape(1,-1))
         result = (np.array(pred) if result is None else np.vstack([result,pred]))
         
         return ([] if result is None else mini_batch.join(pd.DataFrame(result,columns=['score'])))
