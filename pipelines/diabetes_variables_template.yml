@@ -52,9 +52,9 @@ variables:
   - name: INSTALL_AZURE_CLI
     value: 'true'
   - name: SCORING_DATASTORE_INPUT_CONTAINER
-    value: 'input_container'
+    value: 'input'
   - name: SCORING_DATASTORE_OUTPUT_CONTAINER
-    value: 'output_container'
+    value: 'output'
   - name: SCORING_DATASTORE_INPUT_FILENAME
     value: 'diabetes_input.csv'
   - name: SCORING_DATASTORE_OUTPUT_FILENAME
