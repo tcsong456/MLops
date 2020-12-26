@@ -18,8 +18,7 @@ def get_or_create_datastore(datastore_name,
     container_name = env.scoring_datastore_input_container if input else env.scoring_datastore_output_container
     if datastore_name in workspace.datastores:
         datastore = workspace.datastores[datastore_name]
-    elif container_name is not None and env.scoring_datastore_access_key is not None \
-         and env.scoring_datastore_storage_name is not None:
+    elif container_name is not None and env.scoring_datastore_storage_name is not None:
         datastore = Datastore.register_azure_blob_container(workspace=workspace,
                                                             datastore_name=datastore_name,
                                                             container_name=container_name,
@@ -54,7 +53,6 @@ def get_fallback_input_dataset(workspace,
     dataset = Dataset.Tabular.from_delimited_files(scoring_input_ds).register(workspace=workspace,
                                                                               name=env.scoring_dataset_name,
                                                                               create_new_version=False).as_named_input(env.scoring_dataset_name)
-    print(datastore)
     
     return dataset
 
@@ -92,7 +90,7 @@ def get_inputds_outputloc(env,
     
     return input_ds,output_loc
 
-def get_run_configs(workspace,
+def get_run_configs(workspace,  
                     compute_target,
                     env):
     environment = get_environment(workspace=workspace,
@@ -199,6 +197,4 @@ def build_batchscore_pipeline():
 
 if __name__ == '__main__':
     build_batchscore_pipeline()
-    
-
 

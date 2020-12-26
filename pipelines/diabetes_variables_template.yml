@@ -52,9 +52,9 @@ variables:
   - name: INSTALL_AZURE_CLI
     value: 'true'
   - name: SCORING_DATASTORE_INPUT_CONTAINER
-    value: 'input'
+    value: 'input_container'
   - name: SCORING_DATASTORE_OUTPUT_CONTAINER
-    value: 'output'
+    value: 'output_container'
   - name: SCORING_DATASTORE_INPUT_FILENAME
     value: 'diabetes_input.csv'
   - name: SCORING_DATASTORE_OUTPUT_FILENAME
@@ -77,3 +77,5 @@ variables:
     value: 'diabetes-scoring-pipeline'
   - name: AML_COMPUTE_CLUSTER_SCORING
     value: 'score-cluster'
+  - name: SCORING_DATASTORE_STORAGE_NAME
+    value: 'diabetes_blob_container'

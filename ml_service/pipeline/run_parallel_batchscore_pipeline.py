@@ -52,6 +52,10 @@ def run_batchscore_pipeline():
         workspace = Workspace.get(name=env.workspace_name,
                                   subscription_id=env.subscription_id,
                                   resource_group=env.resource_group)
+        
+        ds = workspace.get_default_datastore()
+        print(ds,ds.name)
+        
         scoring_pipeline = get_pipeline(workspace=workspace,
                                         env=env,
                                         pipeline_id=pipeline_id)
