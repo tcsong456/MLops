@@ -79,5 +79,5 @@ variables:
     value: 'score-cluster'
   - name: SCORING_DATASTORE_STORAGE_NAME
     value: 'diabetesblobcontainer'
-  - name: SCORING_DATASTORE_ACCESS_KEY
-    value: '123456'
+#  - name: SCORING_DATASTORE_ACCESS_KEY
+#    value: '123456'
