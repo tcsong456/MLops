@@ -59,8 +59,8 @@ stages:
                 set -e
                 export SUBSCRIPTION_ID=$(az account show --query id -o tsv)
                 python -m ml_service.pipeline.diabetes_parallel_batchscore_pipeline
-            env:
-              SCORING_DATASTORE_ACCESS_KEY: $(SCORING_DATASTORE_ACCESS_KEY)
+#            env:
+#              SCORING_DATASTORE_ACCESS_KEY: $(SCORING_DATASTORE_ACCESS_KEY)
       - job: 'Run_Scoring_Pipeline'
         displayName: 'running scoring pipeline'
         container: mlops
