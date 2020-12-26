@@ -12,7 +12,7 @@ def get_or_create_datastore(datastore_name,
                             env,
                             workspace,
                             input=True):
-    if datastore_name is not None:
+    if datastore_name is None:
         raise ValueError('datastore name can not be empty!')
     
     container_name = env.scoring_datastore_input_container if input else env.scoring_datastore_output_container
