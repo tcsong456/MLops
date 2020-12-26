@@ -64,7 +64,7 @@ def run_batchscore_pipeline():
                                             'model-tag-value':" "})
         run.wait_for_completion(show_output=True)
         if run.get_status() == 'Finished':
-            copy_output(list(run.get_steps()).id,env)
+            copy_output(list(run.get_steps())[0].id,env)
         print('running scccessful!')
     except Exception as e:
         import traceback
