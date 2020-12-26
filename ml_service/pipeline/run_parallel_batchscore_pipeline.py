@@ -64,6 +64,7 @@ def run_batchscore_pipeline():
                                             'model-tag-value':" "})
         run.wait_for_completion(show_output=True)
         if run.get_status() == 'Finished':
+            print(list(run.get_steps())[0].id)
             copy_output(list(run.get_steps())[0].id,env)
         print('running scccessful!')
     except Exception as e:
@@ -73,3 +74,6 @@ def run_batchscore_pipeline():
 
 if __name__ == '__main__':
     run_batchscore_pipeline()
+    
+#https://amlworkspace5060042570.blob.core.windows.net/azureml-blobstore-c564fdde-7e8c-4046-a73b-be96a576bb57/
+#azureml/30a88d34-c18b-460a-aa9a-d5833c37330f/output_loc/parallel_run_step.txt
