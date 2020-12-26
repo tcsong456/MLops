@@ -51,7 +51,7 @@ def get_fallback_input_dataset(workspace,
         datastore = workspace.get_default_datastore()
     scoring_input_ds = datastore.upload_files(files=[env.scoring_datastore_input_filename],
                                               target_path='scoring_input',
-                                              overwrite=False)
+                                              overwrite=True)
     dataset = Dataset.Tabular.from_delimited_files(scoring_input_ds).register(workspace=workspace,
                                                                               name=env.scoring_dataset_name,
                                                                               create_new_version=False).as_named_input(env.scoring_dataset_name)
