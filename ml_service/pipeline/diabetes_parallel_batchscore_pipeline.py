@@ -82,8 +82,8 @@ def get_inputds_outputloc(env,
                                                   workspace=workspace,
                                                   input=True)
         input_ds = get_fallback_input_dataset(workspace=workspace,
-                                               env=env,
-                                               datastore=input_datastore)
+                                              env=env,
+                                              datastore=input_datastore)
         output_datastore = get_or_create_datastore(f'{env.scoring_datastore_storage_name}_out',
                                                    env=env,
                                                    workspace=workspace,

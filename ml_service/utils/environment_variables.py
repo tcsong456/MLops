@@ -54,3 +54,4 @@ class ENV:
     aml_conda_scorecopy_file: Optional[str] = os.environ.get('AML_CONDA_SCORECOPY_FILE')
     compute_scoring_name: Optional[str] = os.environ.get('AML_COMPUTE_CLUSTER_SCORING')
     pipeline_id: Optional[str] = os.environ.get('SCORING_PIPELINE_ID')
+    scoring_datastore_access_key: Optional[str] = os.environ.get('SCORING_DATASTORE_ACCESS_KEY')
