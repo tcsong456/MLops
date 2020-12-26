@@ -78,4 +78,4 @@ variables:
   - name: AML_COMPUTE_CLUSTER_SCORING
     value: 'score-cluster'
   - name: SCORING_DATASTORE_STORAGE_NAME
-    value: 'diabetes_blob_container'
+    value: 'diabetesblobcontainer'
