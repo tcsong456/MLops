@@ -77,3 +77,4 @@ if __name__ == '__main__':
     
 #https://amlworkspace5060042570.blob.core.windows.net/azureml-blobstore-c564fdde-7e8c-4046-a73b-be96a576bb57/
 #azureml/30a88d34-c18b-460a-aa9a-d5833c37330f/output_loc/parallel_run_step.txt
+    
