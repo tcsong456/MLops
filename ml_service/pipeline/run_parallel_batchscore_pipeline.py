@@ -29,7 +29,6 @@ def get_pipeline(workspace,
 
 def copy_output(step_id,
                 env):
-    print(step_id)
     account_url = f'https://{env.scoring_datastore_storage_name}.blob.core.windows.net'
     src_blob_name = f'azureml/{step_id}/{env.scoring_datastore_storage_name}_out/parallel_run_step.txt'
     src_blob_url = f'{account_url}/{env.scoring_datastore_output_container}/{src_blob_name}'
@@ -69,7 +68,8 @@ def run_batchscore_pipeline():
                                             'model-tag-value':" "})
         run.wait_for_completion(show_output=True)
         if run.get_status() == 'Finished':
-            print(run.get_steps())
+            for v in run.get_steps:
+                print(v)
             copy_output(list(run.get_steps())[0].id,env)
         print('running scccessful!')
     except Exception as e:
