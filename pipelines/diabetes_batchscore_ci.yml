@@ -14,13 +14,12 @@ resources:
       trigger:
         branches:
           include:
-            - main
-            - iaac
+            - master
 
 trigger:
   branches:
     include:
-      - main
+      - master
   paths:
     include:
       - diabetes/scoring/parallel_batch_score.py

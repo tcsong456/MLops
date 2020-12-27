@@ -17,8 +17,8 @@ resources:
       trigger:
         branches:
           include:
-            - main
-            - iaac
+            - master
+            
 
 variables:
   - group: devopsforai-aml-vg
