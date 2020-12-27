@@ -78,6 +78,6 @@ variables:
   - name: AML_COMPUTE_CLUSTER_SCORING
     value: 'score-cluster'
   - name: SCORING_DATASTORE_STORAGE_NAME
-    value: 'diabetesamlsa'
+    value: diabetesamlsa
   - name: SCORING_DATASTORE_ACCESS_KEY
-    value: 'owh8UCpsBmVxpo1KFDPlUuWqYPVZjob0G67cJwSXtqDdjK2oZaZAKL3KwFrJC/7jFNPaRn+4Ua0ATkrZFSo5dg=='
+    value: owh8UCpsBmVxpo1KFDPlUuWqYPVZjob0G67cJwSXtqDdjK2oZaZAKL3KwFrJC/7jFNPaRn+4Ua0ATkrZFSo5dg==
