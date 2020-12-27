@@ -3,6 +3,7 @@ from azureml.pipeline.core import PublishedPipeline
 from azureml.storage.blob import ContainerClient
 from azureml.core import Workspace,Experiment
 from ml_service.utils.environment_variables import ENV
+import traceback
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -66,4 +67,4 @@ def run_batchscore_pipeline():
         if run.get_status() == 'Finished':
             copy_output(list(run.get_steps()).id,env)
     except Exception as ex:
-        print(ex)
+        traceback.printexc(limit=10)
