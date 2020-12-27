@@ -29,6 +29,7 @@ def get_pipeline(workspace,
 
 def copy_output(step_id,
                 env):
+    print(step_id)
     account_url = f'https://{env.scoring_datastore_storage_name}.blob.core.windows.net'
     src_blob_name = f'azureml/{step_id}/{env.scoring_datastore_storage_name}_out/parallel_run_step.txt'
     src_blob_url = f'{account_url}/{env.scoring_datastore_output_container}/{src_blob_name}'
@@ -43,7 +44,7 @@ def copy_output(step_id,
     dest_blob_name = f'{destfolder}/{filename_parts[0]}_{file_time}.{filename_parts[1]}'
     dest_client = container_client.get_blob_client(dest_blob_name)
     dest_client.start_copy_from_url(src_blob_url)
-    
+
 def run_batchscore_pipeline():
     try:
         env = ENV()
@@ -54,7 +55,7 @@ def run_batchscore_pipeline():
                                   resource_group=env.resource_group)
         
         ds = workspace.get_default_datastore()
-        print(ds,ds.name)
+        print(ds,ds.name,ds.account_name,ds.container_name)
         
         scoring_pipeline = get_pipeline(workspace=workspace,
                                         env=env,
@@ -68,7 +69,6 @@ def run_batchscore_pipeline():
                                             'model-tag-value':" "})
         run.wait_for_completion(show_output=True)
         if run.get_status() == 'Finished':
-            print(list(run.get_steps())[0].id)
             copy_output(list(run.get_steps())[0].id,env)
         print('running scccessful!')
     except Exception as e:
