@@ -38,7 +38,7 @@ def copy_output(step_id,
     src_blob_properties = container_client.get_blob_client(src_blob_name).get_blob_properties()
     
     destfolder = src_blob_properties.last_modified.date().isoformat()
-    file_time = (src_blob_properties.last_modified.time()).isoformat('miliseconds').replace(':','_').replace('.','_')
+    file_time = (src_blob_properties.last_modified.time()).isoformat('milliseconds').replace(':','_').replace('.','_')
     filename_parts = env.scoring_datastore_output_filename.split('.')
     dest_blob_name = f'{destfolder}/{filename_parts[0]}_{file_time}.{filename_parts[1]}'
     dest_client = container_client.get_blob_client(dest_blob_name)
