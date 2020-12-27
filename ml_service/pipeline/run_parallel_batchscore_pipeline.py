@@ -29,7 +29,6 @@ def get_pipeline(workspace,
 
 def copy_output(step_id,
                 env):
-    print(step_id)
     account_url = f'https://{env.scoring_datastore_storage_name}.blob.core.windows.net'
     src_blob_name = f'azureml/{step_id}/{env.scoring_datastore_storage_name}_out/parallel_run_step.txt'
     src_blob_url = f'{account_url}/{env.scoring_datastore_output_container}/{src_blob_name}'
@@ -55,7 +54,6 @@ def run_batchscore_pipeline():
                                   resource_group=env.resource_group)
         
         ds = workspace.get_default_datastore()
-        print(ds,ds.name,ds.account_name,ds.container_name)
         
         scoring_pipeline = get_pipeline(workspace=workspace,
                                         env=env,
@@ -69,6 +67,7 @@ def run_batchscore_pipeline():
                                             'model-tag-value':" "})
         run.wait_for_completion(show_output=True)
         if run.get_status() == 'Finished':
+            print(run.get_steps())
             copy_output(list(run.get_steps())[0].id,env)
         print('running scccessful!')
     except Exception as e:
@@ -78,7 +77,5 @@ def run_batchscore_pipeline():
 
 if __name__ == '__main__':
     run_batchscore_pipeline()
-    
-#https://amlworkspace5060042570.blob.core.windows.net/azureml-blobstore-c564fdde-7e8c-4046-a73b-be96a576bb57/
-#azureml/30a88d34-c18b-460a-aa9a-d5833c37330f/output_loc/parallel_run_step.txt
+
     
