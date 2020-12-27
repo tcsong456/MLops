@@ -1,7 +1,12 @@
+#resources:
+#  containers:
+#    - container: mlops
+#      image: mcr.microsoft.com/mlops/python:latest
+
 resources:
   containers:
     - container: mlops
-      image: mcr.microsoft.com/mlops/python:latest
+      image: andysong199086/mlops-image:2.0
 
 pr: none
 trigger:

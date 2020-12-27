@@ -4,5 +4,5 @@ dependencies:
   - pip
   
   - pip:
-    - azure-sdk==1.6.*
+    - azureml-sdk==1.6.*
     - azure-storage-blob

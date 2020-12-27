@@ -1,9 +1,8 @@
 import argparse
+from azure.storage.blob import ContainerClient
 from azureml.pipeline.core import PublishedPipeline
-from azureml.storage.blob import ContainerClient
 from azureml.core import Workspace,Experiment
 from ml_service.utils.environment_variables import ENV
-import traceback
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -36,35 +35,44 @@ def copy_output(step_id,
     container_client = ContainerClient(account_url=account_url,
                                        container_name=env.scoring_datastore_output_container,
                                        credential=env.scoring_datastore_access_key)
-    src_blob_properties = container_client.get_blob_container(src_blob_name).get_blob_properties()
+    src_blob_properties = container_client.get_blob_client(src_blob_name).get_blob_properties()
     
     destfolder = src_blob_properties.last_modified.date().isoformat()
-    file_time = (src_blob_properties.last_modified.time()).isoformat('miliseconds').replace(':','_').replace('.','_')
+    file_time = (src_blob_properties.last_modified.time()).isoformat('milliseconds').replace(':','_').replace('.','_')
     filename_parts = env.scoring_datastore_output_filename.split('.')
     dest_blob_name = f'{destfolder}/{filename_parts[0]}_{file_time}.{filename_parts[1]}'
-    dest_client = container_client.get_blob_container(dest_blob_name)
+    dest_client = container_client.get_blob_client(dest_blob_name)
     dest_client.start_copy_from_url(src_blob_url)
-    
+
 def run_batchscore_pipeline():
     try:
         env = ENV()
-        args = parse_args()
-        pipeline_id = args.pipeline_id
+#        args = parse_args()
+        pipeline_id = env.pipeline_id
         workspace = Workspace.get(name=env.workspace_name,
                                   subscription_id=env.subscription_id,
                                   resource_group=env.resource_group)
+        
+        ds = workspace.get_default_datastore()
+        print(ds,ds.name,ds.account_name,ds.container_name)
+        
         scoring_pipeline = get_pipeline(workspace=workspace,
                                         env=env,
                                         pipeline_id=pipeline_id)
         exp = Experiment(workspace,name=env.experiment_name)
         run = exp.submit(scoring_pipeline,
                          pipeline_parameters={
-                                            'model-name':env.model_name,
-                                            'model-version':env.model_version,
-                                            'model-tag-name':'',
-                                            'model-tag-value':''})
+                                            'model-name':env.model_name_scoring,
+                                            'model-version':env.model_version_scoring,
+                                            'model-tag-name':" ",
+                                            'model-tag-value':" "})
         run.wait_for_completion(show_output=True)
         if run.get_status() == 'Finished':
-            copy_output(list(run.get_steps()).id,env)
+            copy_output(list(run.get_steps())[-1].id,env)
+        print('running scccessful!')
     except Exception as ex:
-        traceback.printexc(limit=10)
+        print(ex)
+
+if __name__ == '__main__':
+    run_batchscore_pipeline()
+
